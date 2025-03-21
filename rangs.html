@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMH-Network.de - Rang Übersicht</title>
+    <style>
+        :root {
+            --dark-green: #1a5e1a;
+            --medium-green: #2e8b57;
+            --light-green: #90ee90;
+            --very-light-green: #e6f7e6;
+            --accent-gold: #ffd700;
+            --text-color: #333;
+            --white: #ffffff;
+            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            --animation-speed: 0.3s;
+            
+            /* Rangfarben */
+            --owner-color: #fa0003;
+            --admin-color: #fb0063;
+            --developer-color: #d97600;
+            --manager-color: #9c00fb;
+            --mod-color: #000fb7;
+            --event-staff-color: #fc3e09;
+            --builder-color: #01befb;
+            --helper-color: #fbcc00;
+            --veteran-color: #8a334b;
+            --god-color: #c70084;
+            --donator-color: #418300;
+            --mvp-color: #d900ff;
+            --elite-color: #00eace;
+            --youtube-color: #b90011;
+            --tiktok-color: #0c0c0c;
+            --twitch-color: #b400fb;
+            --og-color: #6ef800;
+            --vip-color: #f6a205;
+            --member-color: #808080; /* grau */
+            --bot-color: #73a1fc;
+            --team-color: #d4ffd1; /* Neue Farbe für Team */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        header {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--white);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        h2 {
+            color: #000000; /* Changed from var(--white) to black */
+            font-size: 2.2rem;
+            margin: 1rem 0 1.5rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+        
+        .ranks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--animation-speed);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .rank-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .rank-card {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: all var(--animation-speed) ease;
+            border-top: 5px solid var(--medium-green);
+            height: 100%;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        /* Team Ränge */
+        .rank-owner {
+            border-top-color: var(--owner-color);
+        }
+        
+        .rank-admin {
+            border-top-color: var(--admin-color);
+        }
+        
+        .rank-developer {
+            border-top-color: var(--developer-color);
+        }
+        
+        .rank-manager {
+            border-top-color: var(--manager-color);
+        }
+        
+        .rank-mod {
+            border-top-color: var(--mod-color);
+        }
+        
+        .rank-event-staff {
+            border-top-color: var(--event-staff-color);
+        }
+        
+        .rank-builder {
+            border-top-color: var(--builder-color);
+        }
+        
+        .rank-helper {
+            border-top-color: var(--helper-color);
+        }
+        
+        /* Community Ränge */
+        .rank-veteran {
+            border-top-color: var(--veteran-color);
+        }
+        
+        .rank-god {
+            border-top-color: var(--god-color);
+        }
+        
+        .rank-donator {
+            border-top-color: var(--donator-color);
+        }
+        
+        .rank-mvp {
+            border-top-color: var(--mvp-color);
+        }
+        
+        .rank-elite {
+            border-top-color: var(--elite-color);
+        }
+        
+        .rank-youtube {
+            border-top-color: var(--youtube-color);
+        }
+        
+        .rank-tiktok {
+            border-top-color: var(--tiktok-color);
+        }
+        
+        .rank-twitch {
+            border-top-color: var(--twitch-color);
+        }
+        
+        .rank-og {
+            border-top-color: var(--og-color);
+        }
+        
+        .rank-vip {
+            border-top-color: var(--vip-color);
+        }
+        
+        .rank-member {
+            border-top-color: var(--member-color);
+        }
+        
+        .rank-bot {
+            border-top-color: var(--bot-color);
+        }
+        
+        .rank-team {
+            border-top-color: var(--team-color);
+        }
+        
+        .rank-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .rank-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .rank-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+            text-align: center;
+        }
+        
+        .rank-description {
+            flex: 1;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .badge-apply {
+            background-color: rgba(46, 139, 87, 0.2);
+            color: var(--dark-green);
+            border: 1px solid var(--medium-green);
+        }
+        
+        .badge-unavailable {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+        
+        footer {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            position: relative;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 3px solid var(--accent-gold);
+        }
+        
+        .highlight {
+            color: var(--medium-green);
+            font-weight: bold;
+        }
+        
+        .not-available {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        /* Nav Tab styling */
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            background-color: rgba(240, 240, 240, 0.8);
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .tab.active {
+            background: var(--gradient-green);
+            color: var(--white);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .rank-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DMH-Network.de</h1>
+        <p>Offizielle Rang Übersicht</p>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('team')">Team Ränge</div>
+            <div class="tab" onclick="switchTab('community')">Community Ränge</div>
+        </div>
+        
+        <div class="ranks-container">
+            <div class="section" id="team-section">
+                <h2>Team Ränge</h2>
+                
+                <div class="rank-cards">
+                    <div class="rank-card rank-owner">
+                        <div class="rank-icon">👑</div>
+                        <div class="rank-name">@OWNER</div>
+                        <div class="rank-description">
+                            Kann man <span class="not-available">nicht</span> werden!
+                        </div>
+                        <div class="badge badge-unavailable">Nicht verfügbar</div>
+                    </div>
+                    
+                    <div class="rank-card rank-owner">
+                        <div class="rank-icon">👑</div>
+                        <div class="rank-name">@CO-OWNER</div>
+                        <div class="rank-description">
+                            Kann man <span class="not-available">nicht</span> werden!
+                        </div>
+                        <div class="badge badge-unavailable">Nicht verfügbar</div>
+                    </div>
+                    
+                    <div class="rank-card rank-admin">
+                        <div class="rank-icon">🔒</div>
+                        <div class="rank-name">@ADMIN</div>
+                        <div class="rank-description">
+                            Leute denen wir (@OWNER) vertrauen!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-developer">
+                        <div class="rank-icon">💻</div>
+                        <div class="rank-name">@DEVELOPER</div>
+                        <div class="rank-description">
+                            Leute die sich mit Dev kram auskennen und denen wir (@OWNER) vertrauen!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-manager">
+                        <div class="rank-icon">📋</div>
+                        <div class="rank-name">@MANAGER</div>
+                        <div class="rank-description">
+                            Man wird erst @🛡️ | SrMOD, dann @📋 | MANAGER!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-mod">
+                        <div class="rank-icon">🛡️</div>
+                        <div class="rank-name">@JrMOD/@SrMOD</div>
+                        <div class="rank-description">
+                            Man wird erst @🌟 | HELPER, dann @🛡️ | JrMOD
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-event-staff">
+                        <div class="rank-icon">🎆</div>
+                        <div class="rank-name">@EVENT STAFF</div>
+                        <div class="rank-description">
+                            Du bist Kreativ und Denkst dir Events aus! (Arbeitet gelegentlich mit @🏛️ | BUILDER zusammen.)
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-builder">
+                        <div class="rank-icon">🏛️</div>
+                        <div class="rank-name">@BUILDER</div>
+                        <div class="rank-description">
+                            Du bist Kreativ und kannst gut bauen! (Du machst z.B. unseren Spawn oder den HUB)
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-helper">
+                        <div class="rank-icon">🌟</div>
+                        <div class="rank-name">@HELPER</div>
+                        <div class="rank-description">
+                            Du hast Lust uns zu helfen und uns zu unterstützen? (Du beantwortest Tickets usw.)
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-admin">
+                        <div class="rank-icon">✔️</div>
+                        <div class="rank-name">@Infrastructure Team</div>
+                        <div class="rank-description">
+                            Die die sich um den Server sorgen.
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-team">
+                        <div class="rank-icon">〽️</div>
+                        <div class="rank-name">@Team</div>
+                        <div class="rank-description">
+                            Alle Teammitglieder!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="community-section" style="display: none;">
+                <h2>Community Ränge</h2>
+                
+                <div class="rank-cards">
+                    <div class="rank-card rank-veteran">
+                        <div class="rank-icon">🔥</div>
+                        <div class="rank-name">@VETERERAN</div>
+                        <div class="rank-description">
+                            Ehemalige Teammitglieder!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-god">
+                        <div class="rank-icon">😇</div>
+                        <div class="rank-name">@GOD</div>
+                        <div class="rank-description">
+                            <span class="highlight">Nur</span> Freunde/Geschwister von uns (@OWNER)
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-donator">
+                        <div class="rank-icon">💰</div>
+                        <div class="rank-name">@DONATOR</div>
+                        <div class="rank-description">
+                            Du musst uns minedestens 5€ schenken oder diesen Server BOOSTEN!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-mvp">
+                        <div class="rank-icon">🏅</div>
+                        <div class="rank-name">@MVP</div>
+                        <div class="rank-description">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-elite">
+                        <div class="rank-icon">💎</div>
+                        <div class="rank-name">@ELITE</div>
+                        <div class="rank-description">
+                            Leute die schon sehr Lange spielen!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-youtube">
+                        <div class="rank-icon">🎥</div>
+                        <div class="rank-name">@YOUTUBE</div>
+                        <div class="rank-description">
+                            Du musst regelmäßig Videos hochladen!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-tiktok">
+                        <div class="rank-icon">📱</div>
+                        <div class="rank-name">@TikTok</div>
+                        <div class="rank-description">
+                            Du musst regelmäßig TikToks erstellen!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-twitch">
+                        <div class="rank-icon">📺</div>
+                        <div class="rank-name">@TWITCH</div>
+                        <div class="rank-description">
+                            Du musst regelmäßig streamen!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-og">
+                        <div class="rank-icon">🐘</div>
+                        <div class="rank-name">@OG</div>
+                        <div class="rank-description">
+                            Du musst ganz am Anfang dabei gewesen sein! (Nur im ersten Monat)
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-vip">
+                        <div class="rank-icon">🎟️</div>
+                        <div class="rank-name">@VIP</div>
+                        <div class="rank-description">
+                            Zwei wege wie du @🎟️ | VIP wirst: Du beteiligst dich in Chats in unserem Discord-Server oder du Spielst oft auf unserem Minecraft-Server!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-member">
+                        <div class="rank-icon">🏷️</div>
+                        <div class="rank-name">@MEMBER</div>
+                        <div class="rank-description">
+                            Jeder!
+                        </div>
+                    </div>
+                    
+                    <div class="rank-card rank-bot">
+                        <div class="rank-icon">🤖</div>
+                        <div class="rank-name">@BOT</div>
+                        <div class="rank-description">
+                            Nur BOTs!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
+    </footer>
+    
+    <script>
+        function switchTab(tab) {
+            const tabs = document.querySelectorAll('.tab');
+            const teamSection = document.getElementById('team-section');
+            const communitySection = document.getElementById('community-section');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'team') {
+                tabs[0].classList.add('active');
+                teamSection.style.display = 'block';
+                communitySection.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                teamSection.style.display = 'none';
+                communitySection.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
