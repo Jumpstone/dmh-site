@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMH-Network.de - Minecraft Server Netzwerk</title>
+    <style>
+        :root {
+            --dark-green: #1a5e1a;
+            --medium-green: #2e8b57;
+            --light-green: #90ee90;
+            --very-light-green: #e6f7e6;
+            --accent-gold: #ffd700;
+            --text-color: #333;
+            --white: #ffffff;
+            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            --animation-speed: 0.3s;
+            
+            /* Server-Farben */
+            --survival-color: #F44336; /* Rot statt Grün */
+            --creative-color: #9E9E9E; /* Grau statt Blau */
+            --bedwars-color: #F44336;
+            --lobby-color: #9C27B0;
+            --hackx3-color: #424242; /* Dunkelgrau */
+            --buildffa-color: #40E0D0; /* Türkis */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        header {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--white);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            background: rgba(26, 94, 26, 0.9);
+            padding: 1rem 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        h2 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin: 1rem 0 1.5rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--animation-speed);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section h3 {
+            color: var(--dark-green);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-green);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+        
+        .info-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .server-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .server-card {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: all var(--animation-speed) ease;
+            border-top: 5px solid var(--medium-green);
+            height: 100%;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .server-survival {
+            border-top-color: var(--survival-color);
+        }
+        
+        .server-creative {
+            border-top-color: var(--creative-color);
+        }
+        
+        .server-bedwars {
+            border-top-color: var(--bedwars-color);
+        }
+        
+        .server-lobby {
+            border-top-color: var(--lobby-color);
+        }
+        
+        .server-hackx3 {
+            border-top-color: var(--hackx3-color);
+        }
+        
+        .server-buildffa {
+            border-top-color: var(--buildffa-color);
+        }
+        
+        .server-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .server-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .server-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+            text-align: center;
+        }
+        
+        .server-description {
+            flex: 1;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:before {
+            content: '✓';
+            color: var(--medium-green);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .team-member {
+            background-color: var(--very-light-green);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            background-color: var(--dark-green);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-gold);
+            color: var(--dark-green);
+        }
+        
+        .server-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--very-light-green);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .server-address {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--dark-green);
+        }
+        
+        .copy-button {
+            background-color: var(--medium-green);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-button:hover {
+            background-color: var(--dark-green);
+        }
+        
+        .tech-specs {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .tech-specs h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-green);
+        }
+        
+        footer {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            position: relative;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 3px solid var(--accent-gold);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            color: var(--medium-green);
+            font-weight: bold;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .section:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .info-grid, .server-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DMH-Network.de</h1>
+        <p>Daniel Matti Henry Network - Dein Minecraft Erlebnis!</p>
+    </header>
+    
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#about">Über Uns</a></li>
+            <li><a href="#servers">Server</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#tech">Technik</a></li>
+            <li><a href="rangs.html">Ränge</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="main-content">
+            <div class="section" id="about">
+                <h3>Über DMH-Network</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <p>Willkommen beim DMH-Network - deinem vielseitigen Minecraft-Servernetzwerk!</p>
+                        <p>Das DMH-Network (Daniel Matti Henry Network) wurde von drei Freunden gegründet: Henry Meyer, Daniel R. und Matti (auch bekannt als Mattrix). Mit Leidenschaft für Minecraft haben wir ein Netzwerk geschaffen, das für Spieler aller Art etwas bietet.</p>
+                        <p>Unser Hauptfokus liegt auf einem spannenden Survival-Erlebnis, aber wir bieten auch actionreiche Bedwars-Matches und kreative Bauprojekte mit MetroBuild.</p>
+                        
+                        <div class="server-info">
+                            <div class="server-address">dmh-network.de</div>
+                            <button class="copy-button" onclick="copyServerAddress()">Kopieren</button>
+                        </div>
+                        
+                        <div class="feature-list">
+                            <li>Unterstützung für Java- und Bedrock-Edition</li>
+                            <li>Kompatibel mit Versionen 1.8 bis 1.21.4 (Fokus auf 1.21.4)</li>
+                            <li>Eigene, einzigartige Plugins</li>
+                            <li>Aktive, freundliche Community</li>
+                            <li>Regelmäßige Events und Updates</li>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="server-info" style="margin-top: 0;">
+                            <div>
+                                <h4>Öffnungszeiten</h4>
+                                <p>24/7 für alle Spieler geöffnet!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link">📱</a>
+                            <a href="#" class="social-link">📺</a>
+                            <a href="#" class="social-link">💬</a>
+                        </div>
+                        
+                        <div class="tech-specs">
+                            <h4>Besondere Merkmale:</h4>
+                            <p>Wir unterstützen Versionen von der 1.8 bis zu der Version 1.21.4 an, damit ihr mit egal welchen eurer Modpacks spielen könnt!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="servers">
+                <h3>Unsere Server</h3>
+                <p>Das DMH-Network besteht aus mehreren spezialisierten Servern, die für unterschiedliche Spielerfahrungen optimiert sind:</p>
+                
+                <div class="server-cards">
+                    <div class="server-card server-survival">
+                        <div class="server-icon">🌳</div>
+                        <div class="server-name">SurvivalBase</div>
+                        <div class="server-description">
+                            Unser Hauptserver mit einem umfangreichen Economy-System und BetterTeams. Baue deine Basis, handle mit anderen Spielern und erkunde die weite Welt!
+                        </div>
+                        <div class="feature-list">
+                            <li>Eigenes Economy-System</li>
+                            <li>BetterTeams für Gruppenspiel</li>
+                            <li>Große, vielfältige Welt</li>
+                            <li>Shops und Handel</li>
+                        </div>
+                    </div>
+                    
+                    <div class="server-card server-creative">
+                        <div class="server-icon">🏙️</div>
+                        <div class="server-name">MetroBuild</div>
+                        <div class="server-description">
+                            Unser Creative-Server für ambitionierte Bauprojekte. Lass deiner Kreativität freien Lauf und erschaffe beeindruckende Strukturen und Städte!
+                        </div>
+                        <div class="feature-list">
+                            <li>Unbegrenzte Ressourcen</li>
+                            <li>WorldEdit-Unterstützung</li>
+                            <li>Große Bauparzellen</li>
+                            <li>Gemeinsame Projekte</li>
+                        </div>
+                    </div>
+                    
+                    <div class="server-card server-bedwars">
+                        <div class="server-icon">⚔️</div>
+                        <div class="server-name">Bedwars</div>
+                        <div class="server-description">
+                            Actiongeladene Bedwars-Matches auf eigens gestalteten Maps. Verteidige dein Bett und eliminiere die gegnerischen Teams!
+                        </div>
+                        <div class="feature-list">
+                            <li>Eigene, einzigartige Maps</li>
+                            <li>Verschiedene Teamgrößen</li>
+                            <li>Spezielle Power-ups</li>
+                            <li>Ranglisten und Statistiken</li>
+                        </div>
+                    </div>
+                    
+                    <div class="server-card server-lobby">
+                        <div class="server-icon">🔮</div>
+                        <div class="server-name">HUB-Server</div>
+                        <div class="server-description">
+                            Zentraler Treffpunkt mit einfachem Zugang zu allen anderen Servern. Hier kannst du andere Spieler treffen und zu deinem Lieblingsserver wechseln.
+                        </div>
+                        <div class="feature-list">
+                            <li>Werbebanner zur Finanzierung</li>
+                            <li>Einfache Navigation</li>
+                            <li>Minispiele in der Lobby</li>
+                            <li>Serverinformationen</li>
+                        </div>
+                    </div>
+                    
+                    <div class="server-card server-hackx3">
+                        <div class="server-icon">🔨</div>
+                        <div class="server-name">3X3X</div>
+                        <div class="server-description">
+                            Hier sind Hacks erlaubt! Testet eure Fähigkeiten in einem speziellen Umfeld, wo sonst verbotene Mods und Hacks genutzt werden können.
+                        </div>
+                        <div class="feature-list">
+                            <li>Hacks und Mods erlaubt</li>
+                            <li>Experimentelle Umgebung</li>
+                            <li>Keine Auswirkungen auf andere Server</li>
+                            <li>Ständige Herausforderungen</li>
+                        </div>
+                    </div>
+                    
+                    <div class="server-card server-buildffa">
+                        <div class="server-icon">🧱</div>
+                        <div class="server-name">BuildFFA</div>
+                        <div class="server-description">
+                            Schnelles, actionreiches Gameplay mit Build-Elementen. Baue und kämpfe gleichzeitig in einer farbenfrohen, dynamischen Umgebung!
+                        </div>
+                        <div class="feature-list">
+                            <li>Schnelles Bauen</li>
+                            <li>PvP und Building kombiniert</li>
+                            <li>Besondere Kits</li>
+                            <li>Wöchentliche Turniere</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="team">
+                <h3>Unser Gründerteam</h3>
+                <p>Das DMH-Network wurde von drei passionierten Minecraft-Enthusiasten ins Leben gerufen:</p>
+                
+                <div class="team-members">
+                    <div class="team-member">👑 Daniel</div>
+                    <div class="team-member">👑 Matti</div>
+                    <div class="team-member">👑 Henry</div>
+                </div>
+                
+                <p style="margin-top: 1.5rem;">Unterstützt von einem engagierten Team aus Administratoren, Moderatoren, Buildern und Helfern stellen wir sicher, dass du ein angenehmes Spielerlebnis hast. Mehr Informationen über unser Team und die verschiedenen Ränge findest du auf unserer <a href="rangs.html" style="color: var(--dark-green); font-weight: bold;">Rangübersicht</a>.</p>
+                
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="color: var(--dark-green); margin-bottom: 0.5rem;">Streams & Content</h4>
+                    <p>Schaue dir regelmäßige Streams von unseren Creators auf YouTube, TikTok und Twitch an! Dort bekommst du Einblicke hinter die Kulissen, kannst bei Events teilnehmen und erfährst als Erster von neuen Updates.</p>
+                </div>
+            </div>
+            
+            <div class="section" id="tech">
+                <h3>Technische Infrastruktur</h3>
+                <p>Unser Netzwerk basiert auf moderner Server-Technologie, die ein reibungsloses Spielerlebnis garantiert:</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4 style="color: var(--dark-green); margin-bottom: 0.5rem;">Server-Hardware</h4>
+                        <div class="feature-list">
+                            <li><span style="color:#ff5733;">2x</span>&nbsp;20 GB DDR5 RAM für optimale Performance</li>
+                            <li><span style="color:#ff5733;">2x</span>&nbsp;5-Kern AMD EPYC Genoa Prozessor</li>
+                            <li><span style="color:#ff5733;">2x</span>&nbsp;175 GB NVME-Speicher</li>                                                                     
+                            <li>DDoS-Schutz und stabile Verbindung (625 MB/s)</li>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 style="color: var(--dark-green); margin-bottom: 0.5rem;">Software & Plugins</h4>
+                        <div class="feature-list">
+                            <li>Velocity und Paper für nahtlose Serverübergänge</li>
+                            <li>AdvancedServerList für informative Serverübersicht</li>
+                            <li>LuckPerms für  alle Server</li>
+                            <li>Zahlreiche eigene, maßgeschneiderte Plugins</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#about">Über Uns</a>
+            <a href="#servers">Server</a>
+            <a href="#team">Team</a>
+            <a href="#tech">Technik</a>
+            <a href="rangs.html">Ränge</a>
+            <a href="#">Impressum</a>
+        </div>
+        <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
+    </footer>
+    
+    <script>
+        function copyServerAddress() {
+            navigator.clipboard.writeText("play.dmh-network.de");
+            alert("Server-Adresse in die Zwischenablage kopiert!");
+        }
+    </script>
+</body>
+</html>
