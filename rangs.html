@@ -388,240 +388,243 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>DMH-Network.de</h1>
-        <p>Offizielle Rang Übersicht</p>
-    </header>
-    
-    <div class="container">
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('team')">Team Ränge</div>
-            <div class="tab" onclick="switchTab('community')">Community Ränge</div>
-        </div>
-        
-        <div class="ranks-container">
-            <div class="section" id="team-section">
-                <h2>Team Ränge</h2>
-                
-                <div class="rank-cards">
-                    <div class="rank-card rank-owner">
-                        <div class="rank-icon">👑</div>
-                        <div class="rank-name">@OWNER</div>
-                        <div class="rank-description">
-                            Kann man <span class="not-available">nicht</span> werden!
-                        </div>
-                        <div class="badge badge-unavailable">Nicht verfügbar</div>
+<header>
+    <h1>DMH-Network.de</h1>
+    <p>Offizielle Rang Übersicht</p>
+</header>
+
+<div class="container">
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('team')">Team Ränge</div>
+        <div class="tab" onclick="switchTab('community')">Community Ränge</div>
+    </div>
+
+    <div class="ranks-container">
+        <div class="section" id="team-section">
+            <h2>Team Ränge</h2>
+
+            <div class="rank-cards">
+                <div class="rank-card rank-owner">
+                    <div class="rank-icon">👑</div>
+                    <div class="rank-name">@OWNER</div>
+                    <div class="rank-description">
+                        Kann man <span class="not-available">nicht</span> werden!
                     </div>
-                    
-                    <div class="rank-card rank-owner">
-                        <div class="rank-icon">👑</div>
-                        <div class="rank-name">@CO-OWNER</div>
-                        <div class="rank-description">
-                            Kann man <span class="not-available">nicht</span> werden!
-                        </div>
-                        <div class="badge badge-unavailable">Nicht verfügbar</div>
+                    <div class="badge badge-unavailable">Nicht verfügbar</div>
+                </div>
+
+                <div class="rank-card rank-owner">
+                    <div class="rank-icon">👑</div>
+                    <div class="rank-name">@CO-OWNER</div>
+                    <div class="rank-description">
+                        Kann man <span class="not-available">nicht</span> werden!
                     </div>
-                    
-                    <div class="rank-card rank-admin">
-                        <div class="rank-icon">🔒</div>
-                        <div class="rank-name">@ADMIN</div>
-                        <div class="rank-description">
-                            Leute denen wir (@OWNER) vertrauen!
-                        </div>
+                    <div class="badge badge-unavailable">Nicht verfügbar</div>
+                </div>
+
+                <div class="rank-card rank-admin">
+                    <div class="rank-icon">🔒</div>
+                    <div class="rank-name">@ADMIN</div>
+                    <div class="rank-description">
+                        Leute denen wir (@OWNER) vertrauen!
                     </div>
-                    
-                    <div class="rank-card rank-developer">
-                        <div class="rank-icon">💻</div>
-                        <div class="rank-name">@DEVELOPER</div>
-                        <div class="rank-description">
-                            Leute die sich mit Dev kram auskennen und denen wir (@OWNER) vertrauen!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-developer">
+                    <div class="rank-icon">💻</div>
+                    <div class="rank-name">@DEVELOPER</div>
+                    <div class="rank-description">
+                        Leute die sich mit Dev kram auskennen und denen wir (@OWNER) vertrauen!
                     </div>
-                    
-                    <div class="rank-card rank-manager">
-                        <div class="rank-icon">📋</div>
-                        <div class="rank-name">@MANAGER</div>
-                        <div class="rank-description">
-                            Man wird erst @🛡️ | SrMOD, dann @📋 | MANAGER!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-manager">
+                    <div class="rank-icon">📋</div>
+                    <div class="rank-name">@MANAGER</div>
+                    <div class="rank-description">
+                        Man wird erst @🛡️ | SrMOD, dann @📋 | MANAGER!
                     </div>
-                    
-                    <div class="rank-card rank-mod">
-                        <div class="rank-icon">🛡️</div>
-                        <div class="rank-name">@JrMOD/@SrMOD</div>
-                        <div class="rank-description">
-                            Man wird erst @🌟 | HELPER, dann @🛡️ | JrMOD
-                        </div>
+                </div>
+
+                <div class="rank-card rank-mod">
+                    <div class="rank-icon">🛡️</div>
+                    <div class="rank-name">@JrMOD/@SrMOD</div>
+                    <div class="rank-description">
+                        Man wird erst @🌟 | HELPER, dann @🛡️ | JrMOD
                     </div>
-                    
-                    <div class="rank-card rank-event-staff">
-                        <div class="rank-icon">🎆</div>
-                        <div class="rank-name">@EVENT STAFF</div>
-                        <div class="rank-description">
-                            Du bist Kreativ und Denkst dir Events aus! (Arbeitet gelegentlich mit @🏛️ | BUILDER zusammen.)
-                        </div>
+                </div>
+
+                <div class="rank-card rank-event-staff">
+                    <div class="rank-icon">🎆</div>
+                    <div class="rank-name">@EVENT STAFF</div>
+                    <div class="rank-description">
+                        Du bist Kreativ und Denkst dir Events aus! (Arbeitet gelegentlich mit @🏛️ | BUILDER zusammen.)
                     </div>
-                    
-                    <div class="rank-card rank-builder">
-                        <div class="rank-icon">🏛️</div>
-                        <div class="rank-name">@BUILDER</div>
-                        <div class="rank-description">
-                            Du bist Kreativ und kannst gut bauen! (Du machst z.B. unseren Spawn oder den HUB)
-                        </div>
+                </div>
+
+                <div class="rank-card rank-builder">
+                    <div class="rank-icon">🏛️</div>
+                    <div class="rank-name">@BUILDER</div>
+                    <div class="rank-description">
+                        Du bist Kreativ und kannst gut bauen! (Du machst z.B. unseren Spawn oder den HUB)
                     </div>
-                    
-                    <div class="rank-card rank-helper">
-                        <div class="rank-icon">🌟</div>
-                        <div class="rank-name">@HELPER</div>
-                        <div class="rank-description">
-                            Du hast Lust uns zu helfen und uns zu unterstützen? (Du beantwortest Tickets usw.)
-                        </div>
+                </div>
+
+                <div class="rank-card rank-helper">
+                    <div class="rank-icon">🌟</div>
+                    <div class="rank-name">@HELPER</div>
+                    <div class="rank-description">
+                        Du hast Lust uns zu helfen und uns zu unterstützen? (Du beantwortest Tickets usw.)
                     </div>
-                    
-                    <div class="rank-card rank-admin">
-                        <div class="rank-icon">✔️</div>
-                        <div class="rank-name">@Infrastructure Team</div>
-                        <div class="rank-description">
-                            Die die sich um den Server sorgen.
-                        </div>
+                </div>
+
+                <div class="rank-card rank-admin">
+                    <div class="rank-icon">✔️</div>
+                    <div class="rank-name">@Infrastructure Team</div>
+                    <div class="rank-description">
+                        Die die sich um den Server sorgen.
                     </div>
-                    
-                    <div class="rank-card rank-team">
-                        <div class="rank-icon">〽️</div>
-                        <div class="rank-name">@Team</div>
-                        <div class="rank-description">
-                            Alle Teammitglieder!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-team">
+                    <div class="rank-icon">〽️</div>
+                    <div class="rank-name">@Team</div>
+                    <div class="rank-description">
+                        Alle Teammitglieder!
                     </div>
                 </div>
             </div>
-            
-            <div class="section" id="community-section" style="display: none;">
-                <h2>Community Ränge</h2>
-                
-                <div class="rank-cards">
-                    <div class="rank-card rank-veteran">
-                        <div class="rank-icon">🔥</div>
-                        <div class="rank-name">@VETERERAN</div>
-                        <div class="rank-description">
-                            Ehemalige Teammitglieder!
-                        </div>
+        </div>
+
+        <div class="section" id="community-section" style="display: none;">
+            <h2>Community Ränge</h2>
+
+            <div class="rank-cards">
+                <div class="rank-card rank-veteran">
+                    <div class="rank-icon">🔥</div>
+                    <div class="rank-name">@VETERERAN</div>
+                    <div class="rank-description">
+                        Ehemalige Teammitglieder!
                     </div>
-                    
-                    <div class="rank-card rank-god">
-                        <div class="rank-icon">😇</div>
-                        <div class="rank-name">@GOD</div>
-                        <div class="rank-description">
-                            <span class="highlight">Nur</span> Freunde/Geschwister von uns (@OWNER)
-                        </div>
+                </div>
+
+                <div class="rank-card rank-god">
+                    <div class="rank-icon">😇</div>
+                    <div class="rank-name">@GOD</div>
+                    <div class="rank-description">
+                        <span class="highlight">Nur</span> Freunde/Geschwister von uns (@OWNER)
                     </div>
-                    
-                    <div class="rank-card rank-donator">
-                        <div class="rank-icon">💰</div>
-                        <div class="rank-name">@DONATOR</div>
-                        <div class="rank-description">
-                            Du musst uns minedestens 5€ schenken oder diesen Server BOOSTEN!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-donator">
+                    <div class="rank-icon">💰</div>
+                    <div class="rank-name">@DONATOR</div>
+                    <div class="rank-description">
+                        Du musst uns minedestens 5€ schenken oder diesen Server BOOSTEN!
                     </div>
-                    
-                    <div class="rank-card rank-mvp">
-                        <div class="rank-icon">🏅</div>
-                        <div class="rank-name">@MVP</div>
-                        <div class="rank-description">
-                            
-                        </div>
+                </div>
+
+                <div class="rank-card rank-mvp">
+                    <div class="rank-icon">🏅</div>
+                    <div class="rank-name">@MVP</div>
+                    <div class="rank-description">
+
                     </div>
-                    
-                    <div class="rank-card rank-elite">
-                        <div class="rank-icon">💎</div>
-                        <div class="rank-name">@ELITE</div>
-                        <div class="rank-description">
-                            Leute die schon sehr Lange spielen!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-elite">
+                    <div class="rank-icon">💎</div>
+                    <div class="rank-name">@ELITE</div>
+                    <div class="rank-description">
+                        Leute die schon sehr Lange spielen!
                     </div>
-                    
-                    <div class="rank-card rank-youtube">
-                        <div class="rank-icon">🎥</div>
-                        <div class="rank-name">@YOUTUBE</div>
-                        <div class="rank-description">
-                            Du musst regelmäßig Videos hochladen!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-youtube">
+                    <div class="rank-icon">🎥</div>
+                    <div class="rank-name">@YOUTUBE</div>
+                    <div class="rank-description">
+                        Du musst regelmäßig Videos hochladen!
                     </div>
-                    
-                    <div class="rank-card rank-tiktok">
-                        <div class="rank-icon">📱</div>
-                        <div class="rank-name">@TikTok</div>
-                        <div class="rank-description">
-                            Du musst regelmäßig TikToks erstellen!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-tiktok">
+                    <div class="rank-icon">📱</div>
+                    <div class="rank-name">@TikTok</div>
+                    <div class="rank-description">
+                        Du musst regelmäßig TikToks erstellen!
                     </div>
-                    
-                    <div class="rank-card rank-twitch">
-                        <div class="rank-icon">📺</div>
-                        <div class="rank-name">@TWITCH</div>
-                        <div class="rank-description">
-                            Du musst regelmäßig streamen!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-twitch">
+                    <div class="rank-icon">📺</div>
+                    <div class="rank-name">@TWITCH</div>
+                    <div class="rank-description">
+                        Du musst regelmäßig streamen!
                     </div>
-                    
-                    <div class="rank-card rank-og">
-                        <div class="rank-icon">🐘</div>
-                        <div class="rank-name">@OG</div>
-                        <div class="rank-description">
-                            Du musst ganz am Anfang dabei gewesen sein! (Nur im ersten Monat)
-                        </div>
+                </div>
+
+                <div class="rank-card rank-og">
+                    <div class="rank-icon">🐘</div>
+                    <div class="rank-name">@OG</div>
+                    <div class="rank-description">
+                        Du musst ganz am Anfang dabei gewesen sein! (Nur im ersten Monat)
                     </div>
-                    
-                    <div class="rank-card rank-vip">
-                        <div class="rank-icon">🎟️</div>
-                        <div class="rank-name">@VIP</div>
-                        <div class="rank-description">
-                            Zwei wege wie du @🎟️ | VIP wirst: Du beteiligst dich in Chats in unserem Discord-Server oder du Spielst oft auf unserem Minecraft-Server!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-vip">
+                    <div class="rank-icon">🎟️</div>
+                    <div class="rank-name">@VIP</div>
+                    <div class="rank-description">
+                        Zwei wege wie du @🎟️ | VIP wirst: Du beteiligst dich in Chats in unserem Discord-Server oder du Spielst oft auf unserem Minecraft-Server!
                     </div>
-                    
-                    <div class="rank-card rank-member">
-                        <div class="rank-icon">🏷️</div>
-                        <div class="rank-name">@MEMBER</div>
-                        <div class="rank-description">
-                            Jeder!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-member">
+                    <div class="rank-icon">🏷️</div>
+                    <div class="rank-name">@MEMBER</div>
+                    <div class="rank-description">
+                        Jeder!
                     </div>
-                    
-                    <div class="rank-card rank-bot">
-                        <div class="rank-icon">🤖</div>
-                        <div class="rank-name">@BOT</div>
-                        <div class="rank-description">
-                            Nur BOTs!
-                        </div>
+                </div>
+
+                <div class="rank-card rank-bot">
+                    <div class="rank-icon">🤖</div>
+                    <div class="rank-name">@BOT</div>
+                    <div class="rank-description">
+                        Nur BOTs!
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <footer>
-        <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
-    </footer>
-    
-    <script>
-        function switchTab(tab) {
-            const tabs = document.querySelectorAll('.tab');
-            const teamSection = document.getElementById('team-section');
-            const communitySection = document.getElementById('community-section');
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            
-            if (tab === 'team') {
-                tabs[0].classList.add('active');
-                teamSection.style.display = 'block';
-                communitySection.style.display = 'none';
-            } else {
-                tabs[1].classList.add('active');
-                teamSection.style.display = 'none';
-                communitySection.style.display = 'block';
-            }
+</div>
+
+<footer>
+    <div class="footer-links">
+        <li><a href="index.html">Main</a></li>
+    </div>
+    <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
+</footer>
+
+<script>
+    function switchTab(tab) {
+        const tabs = document.querySelectorAll('.tab');
+        const teamSection = document.getElementById('team-section');
+        const communitySection = document.getElementById('community-section');
+
+        tabs.forEach(t => t.classList.remove('active'));
+
+        if (tab === 'team') {
+            tabs[0].classList.add('active');
+            teamSection.style.display = 'block';
+            communitySection.style.display = 'none';
+        } else {
+            tabs[1].classList.add('active');
+            teamSection.style.display = 'none';
+            communitySection.style.display = 'block';
         }
-    </script>
+    }
+</script>
 </body>
 </html>

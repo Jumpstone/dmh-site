@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMH-Network.de - Regelwerk</title>
+    <style>
+        :root {
+            --dark-green: #1a5e1a;
+            --medium-green: #2e8b57;
+            --light-green: #90ee90;
+            --very-light-green: #e6f7e6;
+            --accent-gold: #ffd700;
+            --text-color: #333;
+            --white: #ffffff;
+            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            --animation-speed: 0.3s;
+
+            /* Server-Farben */
+            --survival-color: #F44336; /* Rot statt Grün */
+            --creative-color: #9E9E9E; /* Grau statt Blau */
+            --bedwars-color: #F44336;
+            --lobby-color: #9C27B0;
+            --hackx3-color: #424242; /* Dunkelgrau */
+            --buildffa-color: #40E0D0; /* Türkis */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        header {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--white);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            background: rgba(26, 94, 26, 0.9);
+            padding: 1rem 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin: 1rem 0 1.5rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--animation-speed);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h3 {
+            color: var(--dark-green);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        .rule-section {
+            margin-bottom: 2rem;
+        }
+
+        .rule-heading {
+            font-size: 1.3rem;
+            color: var(--dark-green);
+            font-weight: 700;
+            margin: 1.5rem 0 0.5rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--light-green);
+        }
+
+        .rule-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .rule-list li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .rule-list li:before {
+            content: '•';
+            color: var(--medium-green);
+            font-weight: bold;
+            position: absolute;
+            left: 0.7rem;
+        }
+
+        .rule-note {
+            background-color: var(--very-light-green);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--medium-green);
+        }
+
+        .rule-category {
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        .subrule {
+            margin-left: 1.5rem;
+            padding: 0.3rem 0;
+        }
+
+        footer {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            position: relative;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .important {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>DMH-Network Regelwerk</h1>
+    <p>Die Grundlagen für ein faires Spielerlebnis</p>
+</header>
+
+<nav>
+    <ul class="nav-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="rangs.html">Ränge</a></li>
+        <li><a href="regelwerk.html">Regelwerk</a></li>
+        <li><a href="link.html">Links</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="main-content">
+        <div class="section" id="intro">
+            <h3>Einleitung</h3>
+            <p>Damit alle Nutzer Spaß haben und ein angenehmes Spielerlebnis genießen können, bitten wir euch, die folgenden Regeln zu beachten. Das Regelwerk gilt für alle Bereiche des DMH-Networks - sowohl auf dem Minecraft-Server als auch auf unserem Discord.</p>
+
+            <div class="rule-note">
+                <strong>Hinweis:</strong> Mit dem Betreten unseres Servers oder Discord-Servers akzeptierst du automatisch diese Regeln. Unwissenheit schützt nicht vor Konsequenzen.
+            </div>
+        </div>
+
+        <div class="section" id="allgemein">
+            <h3>Allgemeine Regeln</h3>
+
+            <div class="rule-section">
+                <div class="rule-heading">1. Verhaltenskodex</div>
+                <ul class="rule-list">
+                    <li>Sei respektvoll und freundlich gegenüber anderen Nutzern.</li>
+                    <li>Kein Spam oder aufdringliches Verhalten.</li>
+                    <li>Keine beleidigenden, gewaltverherrlichenden, rassistischen oder pornografischen Inhalte.</li>
+                    <li>Private Streitigkeiten sind privat zu klären – nicht in öffentlichen Chats.</li>
+                    <li>Werbung ist nur mit Erlaubnis eines Teammitglieds gestattet.</li>
+                    <li>Anweisungen des Teams sind zu befolgen.</li>
+                    <li>Schütze deine privaten Daten und teile sie nicht mit anderen.</li>
+                    <li>Falsche Beschwerden können zu Sperren führen; ernsthafte Beschwerden werden geprüft.</li>
+                    <li>Kopieren unserer Serversysteme auf anderen Plattformen ist untersagt.</li>
+                    <li>Das Team behält sich das Recht vor, Nutzer ohne Vorwarnung zu sperren.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="discord">
+            <h3>Discord-Regeln</h3>
+
+            <div class="rule-section">
+                <div class="rule-heading">2. Pings</div>
+                <ul class="rule-list">
+                    <li>Direkte Pings an einzelne Nutzer oder Massen-Pings wie <code>@everyone</code> oder <code>@Member</code> sind nicht erlaubt.</li>
+                    <li>Bei Fragen oder Problemen, nutze die dafür vorgesehenen Kanäle und Tickets.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">3. Voice-Chat Regeln</div>
+                <ul class="rule-list">
+                    <li>Kein übermäßiges Spammen im Chat während des Voice-Chats.</li>
+                    <li>Keine pornografischen Inhalte über Kamera oder Stream.</li>
+                    <li>Keine extremen Beleidigungen (z. B. Bastard, Hurensohn, ...).</li>
+                    <li>Neue Nutzer freundlich begrüßen.</li>
+                    <li>Übermäßig laute Geräusche oder Musik sind zu vermeiden.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">4. Nicknames</div>
+                <ul class="rule-list">
+                    <li>Nicknames dürfen keine beleidigenden, rassistischen oder anstößigen Wörter enthalten.</li>
+                    <li>Nicknames sollten möglichst lesbar sein und keine exzessiven Sonderzeichen enthalten.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="minecraft">
+            <h3>Minecraft-Regeln</h3>
+
+            <div class="rule-section">
+                <div class="rule-heading">5. PvP & Verhalten</div>
+                <ul class="rule-list">
+                    <li>PvP ist nur erlaubt, wenn alle beteiligten Spieler zustimmen.</li>
+                    <li>Das Töten anderer Spieler ohne deren Zustimmung wird als "Random-Kill" betrachtet und ist verboten.</li>
+                    <li>Ausnahme: Auf speziellen PvP-Servern wie Bedwars oder BuildFFA ist PvP immer aktiviert.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">6. Claims</div>
+                <ul class="rule-list">
+                    <li>Chunks können mit <code>/xclaim</code> geclaimt werden.</li>
+                    <li>Bitte benennt eure Claims sinnvoll um.</li>
+                    <li>Griefing (das Zerstören fremder Bauten) ist strengstens untersagt.</li>
+                    <li>Claims anderer Spieler dürfen nicht ohne Erlaubnis betreten werden.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">7. Erlaubte & Verbotene Client-Mods</div>
+                <p class="rule-category">Verbotene Mods:</p>
+                <ul class="rule-list">
+                    <li>AutoTotem</li>
+                    <li>Schematica-Mods (z. B. Litematica)</li>
+                    <li>Freecam (wenn sie durch Blöcke fliegen kann)</li>
+                    <li>Jegliche Mods, die Daten vom Server auslesen (z. B. ClientSort)</li>
+                    <li>Cheats oder Mods mit unfairen Vorteilen</li>
+                    <li>X-Ray Texture Packs oder Mods</li>
+                </ul>
+
+                <p class="rule-category">Erlaubte Mods:</p>
+                <ul class="rule-list">
+                    <li>Optifine / Sodium / Iris</li>
+                    <li>Minimap-Mods (ohne Spielererkennung oder Cave-Finding)</li>
+                    <li>Kosmetische Mods (wie Capes, Animationen, etc.)</li>
+                    <li>Inventory Sorting Mods (die keine Server-Daten auslesen)</li>
+                </ul>
+
+                <div class="rule-note">
+                    Im Zweifel, ob eine Mod erlaubt ist, frage bitte ein Teammitglied!
+                </div>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">8. AFK-Regelung</div>
+                <ul class="rule-list">
+                    <li>AFK-Farmen ist verboten.</li>
+                    <li>Nach 5 Minuten wird der Status auf „AFK" gesetzt.</li>
+                    <li>Nach weiteren 5 Minuten erfolgt ein automatischer Kick.</li>
+                    <li>Nur Spieler mit dem <code>[CAM-AFK]</code> Rang dürfen im Spectator-Modus AFK sein.</li>
+                    <li>Die Verwendung von Auto-Clickern oder ähnlichen Programmen, um AFK-Erkennung zu umgehen, ist verboten.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">9. Bug-Meldungen</div>
+                <ul class="rule-list">
+                    <li>Das Ausnutzen von Bugs führt zu einer Sperre.</li>
+                    <li>Bugs müssen sofort einem Teammitglied gemeldet werden.</li>
+                    <li>Nutzer, die Bugs melden, werden nicht bestraft.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">10. Server-Sicherheit</div>
+                <ul class="rule-list">
+                    <li>Das absichtliche Überlasten des Servers, z. B. durch DDoS oder massenhafte Pings, ist ausdrücklich verboten.</li>
+                    <li>Versuche, Server-Schwachstellen auszunutzen, führen zu einer permanenten Sperre.</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <div class="rule-heading">11. Strafen</div>
+                <ul class="rule-list">
+                    <li>Verstöße gegen die Regeln können mit temporären oder permanenten Banns bestraft werden.</li>
+                    <li>Teammitglieder entscheiden über die angemessene Strafe.</li>
+                    <li>Bei leichten Verstößen gibt es zunächst eine Verwarnung.</li>
+                    <li>Wiederholte Verstöße führen zu härteren Konsequenzen.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="changes">
+            <h3>Änderungen am Regelwerk</h3>
+            <p>Das Regelwerk kann jederzeit durch das Team angepasst werden. Nutzer sind verpflichtet, sich über Änderungen zu informieren.</p>
+
+            <div class="rule-note">
+                <strong>Wichtig:</strong> Für Fragen oder Unklarheiten stehen unsere Teammitglieder zur Verfügung. Viel Spaß auf dem DMH-Network!
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <li><a href="index.html">Main</a></li>
+    </div>
+    <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
+</footer>
+</body>
+</html>

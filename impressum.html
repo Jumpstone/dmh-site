@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - DMH-Network.de</title>
+    <style>
+        :root {
+            --dark-green: #1a5e1a;
+            --medium-green: #2e8b57;
+            --light-green: #90ee90;
+            --very-light-green: #e6f7e6;
+            --accent-gold: #ffd700;
+            --text-color: #333;
+            --white: #ffffff;
+            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            --animation-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        header {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: var(--white);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            background: rgba(26, 94, 26, 0.9);
+            padding: 1rem 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            color: var(--dark-green);
+            font-size: 2.2rem;
+            margin: 1rem 0 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .section {
+            background-color: rgba(255, 255, 255, 0.95); /* Verstärkter weißer Hintergrund */
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--animation-speed);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #333; /* Dunkelgraue Schrift für besseren Kontrast */
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h3 {
+            color: var(--dark-green);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        .impressum-content {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+
+        footer {
+            background: rgba(26, 94, 26, 0.8);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            position: relative;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap; /* Erlaubt Umbruch bei kleinen Bildschirmen */
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>DMH-Network.de</h1>
+    <p>Daniel Matti Henry Network - Dein Minecraft Erlebnis!</p>
+</header>
+
+<nav>
+    <ul class="nav-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="rangs.html">Ränge</a></li>
+        <li><a href="regelwerk.html">Regelwerk</a></li>
+        <li><a href="link.html">Links</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="main-content">
+        <div class="section">
+            <h3>Impressum</h3>
+
+            <div class="impressum-content">
+                <p>BETA</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <li><a href="index.html">Main</a></li>
+    </div>
+    <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
+</footer>
+</body>
+</html>
