@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpireKingdom - Erobere das Reich!</title>
+    <style>
+        /* Allgemeine Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Minecraft', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #2b2b2b;
+            padding: 20px 0;
+            border-bottom: 4px solid #5d4a15;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo h1 {
+            font-size: 48px;
+            color: #fbce41;
+            text-shadow: 2px 2px 0 #000, 4px 4px 0 #3b3b3b;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .navigation a {
+            color: #f0f0f0;
+            text-decoration: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .navigation a:hover {
+            background-color: #5d4a15;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/600') center/cover;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fbce41;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #5d4a15;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 0 #3a2e0c;
+        }
+
+        .btn:hover {
+            background-color: #7d6421;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 #3a2e0c;
+        }
+
+        /* Features Section */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #fbce41;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background-color: #2b2b2b;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            border-left: 4px solid #5d4a15;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fbce41;
+        }
+
+        /* Clan Section */
+        .clan-section {
+            background-color: #2b2b2b;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .clan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .clan-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid #3a3a3a;
+            transition: all 0.3s;
+        }
+
+        .clan-card:hover {
+            border-color: #5d4a15;
+            transform: scale(1.03);
+        }
+
+        .clan-image {
+            width: 80px;
+            height: 80px;
+            background-color: #444;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+        }
+
+        .clan-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #fbce41;
+        }
+
+        /* Join Section */
+        .join-section {
+            background-color: #2b2b2b;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .join-section p {
+            margin-bottom: 25px;
+            font-size: 18px;
+        }
+
+        .server-info {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            display: inline-block;
+            margin-bottom: 25px;
+            font-size: 20px;
+            border: 2px solid #5d4a15;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background-color: #2b2b2b;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #222;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 4px solid #5d4a15;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #fbce41;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .hero {
+                height: auto;
+                padding: 60px 20px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .form-container,
+            .clan-section,
+            .join-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <h1>EMPIREKINGDOM</h1>
+        </div>
+        <nav class="navigation">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#clans">Clans</a>
+            <a href="#join">Beitreten</a>
+            <a href="#rules">Regeln</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <h2>EROBERE DAS KÖNIGREICH</h2>
+    <p>Tritt einem Clan bei oder gründe deinen eigenen. Kämpfe, baue und erobere das Königreich mit deinen Verbündeten. Nur der stärkste Clan wird überleben!</p>
+    <a href="#join" class="btn">Jetzt Beitreten</a>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="container">
+    <h2 class="section-title">SERVER FEATURES</h2>
+    <div class="features">
+        <div class="feature-card">
+            <h3>Clan-System</h3>
+            <p>Gründe deinen eigenen Clan oder tritt einem bestehenden bei. Wähle einen Anführer, rekrutiere Mitglieder und kämpfe gemeinsam, um das Königreich zu erobern.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Territoriale Kontrolle</h3>
+            <p>Erobere Territorien und baue deine Basis. Sichere Ressourcen, verteidige dein Land gegen Feinde und erweitere dein Reich.</p>
+        </div>
+        <div class="feature-card">
+            <h3>PvP-Kampfsystem</h3>
+            <p>Ausgeklügeltes Kampfsystem mit benutzerdefinierten Waffen, Rüstungen und Fähigkeiten. Trainiere deine Kampfkünste und werde unbesiegbar.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Wirtschaftssystem</h3>
+            <p>Handel mit anderen Spielern, sammle Ressourcen und baue eine starke Wirtschaft auf, um deinen Clan zu unterstützen.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Rangordnung & Events</h3>
+            <p>Steige in der Rangordnung auf und nimm an wöchentlichen Events teil, um exklusive Belohnungen und Vorteile zu erhalten.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Bündnissystem</h3>
+            <p>Schließe Bündnisse mit anderen Clans, um gemeinsam stärker zu werden, oder führe Krieg gegen deine Feinde.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Clan Section -->
+<section id="clans" class="container">
+    <h2 class="section-title">TOP CLANS</h2>
+    <div class="clan-section">
+        <p>Diese Clans beherrschen derzeit das Königreich. Wirst du sie herausfordern oder dich ihnen anschließen?</p>
+        <div class="clan-grid">
+            <div class="clan-card">
+                <div class="clan-image"></div>
+                <h3>Clan1</h3>
+                <p>Anführer: Player1</p>
+                <p>Mitglieder: 0</p>
+                <p>Territorium: text-hier</p>
+            </div>
+            <div class="clan-card">
+                <div class="clan-image"></div>
+                <h3>Clan2</h3>
+                <p>Anführer: Player2</p>
+                <p>Mitglieder: 0</p>
+                <p>Territorium: text-hier</p>
+            </div>
+            <div class="clan-card">
+                <div class="clan-image"></div>
+                <h3>Clan3</h3>
+                <p>Anführer: Player3</p>
+                <p>Mitglieder: 0</p>
+                <p>Territorium: text-hier</p>
+            </div>
+            <div class="clan-card">
+                <div class="clan-image"></div>
+                <h3>Clan4</h3>
+                <p>Anführer: Player4</p>
+                <p>Mitglieder: 0</p>
+                <p>Territorium: text-hier</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Join Section -->
+<section id="join" class="container">
+    <h2 class="section-title">SERVER BEITRETEN</h2>
+    <div class="join-section">
+        <p>Um dem EmpireKingdom beizutreten, verbinde dich mit unserem Server unter folgender Adresse:</p>
+        <div class="server-info">empirekingdom.dmh-network.de</div>
+        <p>Nach dem Beitritt kannst du dich bei einem der bestehenden Clans bewerben oder einen Admin kontaktieren, um einen neuen Clan zu gründen.</p>
+        <a href="https://discord.gg/nHkMfWy4ZS" class="btn">Unserem Discord beitreten</a>
+    </div>
+</section>
+
+<!-- Rules Section -->
+<section id="rules" class="container">
+    <h2 class="section-title">SERVER REGELN</h2>
+    <div class="form-container">
+        <h3>Allgemeine Regeln</h3>
+        <p>1. Respektiere alle Spieler - Beleidigungen und Belästigungen sind nicht erlaubt.</p>
+        <p>2. Kein Cheating, Hacking oder Ausnutzen von Bugs.</p>
+        <p>3. Griefing ist nur gegen feindliche Clans während offizieller Kriegszeiten erlaubt.</p>
+        <p>4. Angemessene Sprache in allen öffentlichen Chats verwenden.</p>
+
+        <h3>Clan-Regeln</h3>
+        <p>1. Ein Spieler kann nur Mitglied in einem Clan sein.</p>
+        <p>2. Clans müssen mindestens 3 aktive Mitglieder haben, um offiziell anerkannt zu werden.</p>
+        <p>3. Clanführer können jederzeit durch Abstimmung des Clans abgewählt werden.</p>
+        <p>4. Inaktive Clans (30 Tage ohne Aktivität) verlieren ihre Territorien.</p>
+
+        <h3>Kampf-Regeln</h3>
+        <p>1. Kriege müssen offiziell im Discord deklariert werden.</p>
+        <p>2. Neutrale Zonen können nicht eingenommen werden.</p>
+        <p>3. Ressourcensammelgebiete sind PvP-freie Zonen für neue Spieler.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-links">
+            <a href="index.html">DMH</a>
+        </div>
+        <p class="copyright">© 2025 EmpireKingdom. Alle Rechte vorbehalten.</p>
+    </div>
+</footer>
+</body>
+</html>
