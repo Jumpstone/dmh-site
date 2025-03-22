@@ -3,414 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMH-Network.de - Links & Socials</title>
+    <title>Die Lustigste Seite der Welt</title>
     <style>
-        :root {
-            --dark-green: #1a5e1a;
-            --medium-green: #2e8b57;
-            --light-green: #90ee90;
-            --very-light-green: #e6f7e6;
-            --accent-gold: #ffd700;
-            --text-color: #333;
-            --white: #ffffff;
-            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
-            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            --animation-speed: 0.3s;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: #f8f9fa;
-            color: var(--text-color);
-            line-height: 1.6;
-            background-image: url('/api/placeholder/1200/800');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }
-
-        header {
-            background: rgba(26, 94, 26, 0.8);
-            color: var(--white);
-            padding: 2.5rem 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border-bottom: 3px solid var(--accent-gold);
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            color: var(--white);
-        }
-
-        header p {
-            font-size: 1.3rem;
-            font-weight: 300;
-            opacity: 0.9;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-        }
-
-        nav {
-            background: rgba(26, 94, 26, 0.9);
-            padding: 1rem 0;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        h2 {
-            color: var(--white);
-            font-size: 2.2rem;
-            margin: 1rem 0 1.5rem;
-            position: relative;
-            display: inline-block;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 100%;
-            height: 4px;
-            background: var(--accent-gold);
-            border-radius: 2px;
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .section {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
-            transition: transform var(--animation-speed);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        .section h3 {
-            color: var(--dark-green);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light-green);
-        }
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .links-category {
-            margin-bottom: 2.5rem;
-        }
-
-        .links-category h4 {
-            font-size: 1.4rem;
-            color: var(--dark-green);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--light-green);
-        }
-
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            background-color: var(--very-light-green);
-            padding: 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
-            background-color: var(--light-green);
-        }
-
-        .social-icon {
-            font-size: 1.8rem;
-            margin-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            background-color: var(--medium-green);
+            background: linear-gradient(135deg, #32CD32, #FF4500, #8A2BE2);
             color: white;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .link-divider {
-            height: 2px;
-            background: var(--light-green);
-            margin: 1.5rem 0;
-            border-radius: 2px;
-        }
-
-        .creator-link {
-            background-color: rgba(26, 94, 26, 0.1);
-        }
-
-        footer {
-            background: rgba(26, 94, 26, 0.8);
-            color: var(--white);
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            position: relative;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border-top: 3px solid var(--accent-gold);
-        }
-
-        .footer-links {
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 2rem;
-            margin: 1rem 0;
+            align-items: center;
         }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+        h1 {
+            font-size: 3em;
+            text-shadow: 3px 3px 5px black;
         }
-
-        .footer-links a:hover {
-            opacity: 1;
-            text-decoration: underline;
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            background: orange;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background 0.3s;
         }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        button:hover {
+            background: red;
+            transform: scale(1.1);
         }
-
-        .section {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-                margin: 2rem auto;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
+        #witz {
+            font-size: 1.8em;
+            margin-top: 20px;
+            max-width: 80%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-<header>
-    <h1>DMH-Network.de</h1>
-    <p>Links & Social Media</p>
-</header>
+<h1>Willkommen auf der lustigsten Seite der Welt!</h1>
+<p>Klick auf den Knopf, wenn du bereit bist zu lachen:</p>
+<button onclick="machWitz()">Lustigen Witz anzeigen</button>
+<p id="witz"></p>
 
-<nav>
-    <ul class="nav-links">
-        <li><a href="index.html">Startseite</a></li>
-        <li><a href="rangs.html">Ränge</a></li>
-        <li><a href="regelwerk.html">Regelwerk</a></li>
-        <li><a href="link.html">Links</a></li>
-    </ul>
-</nav>
+<script>
+    function machWitz() {
+        const witze = [
+            "Warum können Geister so schlecht lügen? Weil man durch sie hindurchsehen kann!",
+            "Was macht eine Wolke, wenn sie kitzelig ist? Sie bekommt einen Regenschauer!",
+            "Warum können Skelette so schlecht kämpfen? Weil sie keinen Mumm haben!",
+            "Warum können Kühe nicht Schlittschuhlaufen? Weil die Milchstraße zu glatt ist!",
+            "Warum ist das Mathebuch so traurig? Weil es zu viele Probleme hat!",
+            "Warum haben Hühner keine Uhren? Weil sie immer aus dem Ei-phone anrufen!",
+            "Was macht ein Pirat am Computer? Er drückt die Enter-Taste!",
+            "Warum ging die Tomate zur Party? Weil sie sich Ketchup machen wollte!",
+            "Was ist grün und rennt durch den Wald? Eine Gurke auf der Flucht!",
+            "Wie nennt man ein Reh ohne Augen? Keine Ahnung!",
+            "Warum können Elefanten nicht fliegen? Weil sie keinen Pilotenschein haben!",
+            "Warum können Kängurus nicht gut lügen? Weil sie sich in Widersprüche hüpfen!",
+            "Warum sind Gespenster schlechte Lügner? Weil man durch sie hindurchsehen kann!",
+            "Warum hat der Apfel ein Handy? Weil er immer up-to-date sein will!",
+            "Warum sind Bananen nie allein? Weil sie in Stauden reisen!",
+            "Warum sind Bäume so gute Freunde? Weil sie immer auf dem Holzweg sind!",
+            "Warum hat das Fahrrad keine Beine? Weil es sonst weglaufen würde!",
+            "Warum haben Fische so große Augen? Weil sie immer tief blicken!",
+            "Was ist braun und läuft durch den Wald? Ein Wanderbrot!",
+            "Warum sind Vögel so gute Sänger? Weil sie immer den richtigen Ton treffen!",
+            "Warum war der Mathematikbuch traurig? Weil es zu viele Probleme hatte!",
+            "Warum war die Kaffeetasse so gut gelaunt? Weil sie immer einen guten Eindruck hinterlässt!",
+            "Warum können Bienen so gut rechnen? Weil sie immer die richtigen Zahlen summieren!",
+            "Warum fliegt ein Flugzeug in den Himmel? Um nicht auf der Straße im Stau zu stehen!",
+            "Warum ist das Tischtennis-Set so schwer? Weil es immer wieder Punkte macht!",
+            "Warum wurde das Handy in den Ofen gelegt? Weil es warm und ausstrahlend war!",
+            "Warum sind Katzen so schlechte Computer-Nutzer? Weil sie immer die Maus verlieren!",
+            "Warum können Vögel keinen richtigen Job finden? Weil sie ständig aus der Reihe tanzen!",
+            "Warum nahm der Apfel die Straßenbahn? Weil er nach einer saftigen Fahrt suchte!",
+            "Warum hörte der Lehrer auf, zu unterrichten? Weil er keine Lust mehr auf die Klasse hatte!",
+            "Warum sind Stühle so schlecht im Kochen? Weil sie nie die richtigen Zutaten finden!",
+            "Warum wollte der Flugzeugpilot ein Gedicht schreiben? Weil er mit den Wolken spielen wollte!",
+            "Warum ging der Stift zur Party? Weil er sich endlich auf sein Papier setzen wollte!",
+            "Warum war der Buchhalter so müde? Weil er den ganzen Tag Zahlen bearbeitet hatte!",
+            "Warum gehen Musiker nie zu Kaffeekränzchen? Weil sie lieber eine Pause machen!",
+            "Warum gab der Verkäufer dem Apfel einen Rabatt? Weil er ihn für billig hielt!",
+            "Warum lieben Vampire keine Bücher? Weil sie immer nur nach den letzten Seiten greifen!",
+            "Warum war der Lehrer ein Pirat? Weil er immer auf der Suche nach neuen Abenteuern war!",
+            "Warum ist der Apfel aus der Liste gefallen? Weil er der einzige war, der noch rot war!",
+            "Warum ist der Computer so schlecht im Singen? Weil er immer auf der falschen Taste steht!",
+            "Warum geht der Igel nie ins Kino? Weil er die Stacheln nicht ablegen kann!",
+            "Warum haben Pinguine keine Freunde? Weil sie immer alleine auf dem Eis sind!",
+            "Warum trugen die Giraffen immer Hüte? Damit sie nicht auf den Kopf fallen!",
+            "Warum sind Zwerge die besten Tänzer? Weil sie immer im Takt bleiben!",
+            "Warum ist der Elefant der beste Freund des Löwen? Weil er immer aufrecht steht!",
+            "Warum laufen Gänse so schnell? Weil sie immer auf der Flucht sind!",
+            "Warum können Kaninchen nie Lügen? Weil ihre Ohren immer groß genug sind, um zu hören, ob jemand etwas erfunden hat!",
+            "Warum können Zebras keine Taschen tragen? Weil ihre Streifen immer die Taschen zerreißen!",
+            "Warum ist der Baum so gut im Schwimmen? Weil er immer in die Tiefe geht!",
+            "Warum flogen die Vögel nach Süden? Weil sie die warme Sonne suchten!",
+            "Warum ist der Apfel der beliebteste Obst? Weil er immer etwas von sich gibt!",
+            "Warum hat das Pferd so viel zu tun? Weil es immer im Galopp bleibt!",
+            "Warum sind Bären so beliebt? Weil sie immer den richtigen Bärenanteil bekommen!",
+            "Warum können Frösche so gut reiten? Weil sie nie von den richtigen Seiten abkommen!",
+            "Warum ist der Fisch der beste Schwimmer? Weil er immer auf den richtigen Kurs schwimmt!",
+            "Warum ist der Wolf ein so guter Jäger? Weil er immer den besten Blick hat!",
+            "Warum haben die Schildkröten so gute Ausdauer? Weil sie immer am Ziel ankommen!",
+            "Warum gingen die Mäuse auf den Bauernhof? Weil sie auf den Käse warteten!",
+            "Warum können Bären so gut tanzen? Weil sie immer den Rhythmus spüren!",
+            "Warum war der Apfel so aufgeregt? Weil er bald gepflückt wird!",
+            "Warum sind Katzen so gut darin, sich zu verstecken? Weil sie immer wissen, wo sie sind!",
+            "Warum ist das Känguru der beste Springer? Weil es immer aus der Hüfte geht!",
+            "Warum fliegt der Adler so hoch? Weil er den Blick für das große Ganze hat!",
+            "Warum trägt der Löwe immer eine Mähne? Damit er das Königliche ausstrahlen kann!",
+            "Warum sind Hühner immer so neugierig? Weil sie wissen wollen, was hinter dem nächsten Hühnchen steckt!",
+            "Warum war der Tiger so stolz? Weil er weiß, dass er das beste Fell hat!"
+        ];
 
-<div class="container">
-    <div class="main-content">
-        <div class="section">
-            <h3>DMH-Network Social Media</h3>
-            <p>Folge uns auf allen Plattformen, um keine Updates zu verpassen und Teil unserer Community zu werden!</p>
-
-            <div class="links-category">
-                <h4>Offizielle DMH-Network Kanäle</h4>
-                <div class="social-links">
-                    <a href="https://discord.gg/tzSGpFbQZA" class="social-link" target="_blank">
-                        <div class="social-icon">💬</div>
-                        <div>
-                            <div>DMH Discord</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Tritt unserer Community bei</div>
-                        </div>
-                    </a>
-
-                    <a href="https://www.tiktok.com/@dmh_network" class="social-link" target="_blank">
-                        <div class="social-icon">📱</div>
-                        <div>
-                            <div>DMH auf TikTok</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Kurze Videos und Updates</div>
-                        </div>
-                    </a>
-
-                    <a href="https://www.youtube.com/@DMHNetwork-v1d" class="social-link" target="_blank">
-                        <div class="social-icon">📺</div>
-                        <div>
-                            <div>DMH auf YouTube</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Tutorials, Ankündigungen und mehr</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="link-divider"></div>
-
-            <div class="links-category">
-                <h4>Unsere Creator</h4>
-                <p>Folge unseren talentierten Content Creators, die regelmäßig Streams und Videos zum DMH-Network produzieren!</p>
-
-                <div class="social-links">
-                    <a href="https://www.twitch.tv/jumpstone444777" class="social-link creator-link" target="_blank">
-                        <div class="social-icon">📡</div>
-                        <div>
-                            <div>JumpStone auf Twitch</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Live-Streams und Gameplay</div>
-                        </div>
-                    </a>
-
-                    <a href="https://www.twitch.tv/schildflieger" class="social-link creator-link" target="_blank">
-                        <div class="social-icon">📡</div>
-                        <div>
-                            <div>SchildFlieger auf Twitch</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Regelmäßige DMH-Streams</div>
-                        </div>
-                    </a>
-
-                    <a href="https://www.twitch.tv/daaanieltv" class="social-link creator-link" target="_blank">
-                        <div class="social-icon">📡</div>
-                        <div>
-                            <div>Daniel auf Twitch</div>
-                            <div style="font-size: 0.8rem; opacity: 0.7;">Minecraft und mehr</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="link-divider"></div>
-
-            <div class="links-category">
-                <h4>Warum folgen?</h4>
-                <div class="links-grid">
-                    <div>
-                        <h5 style="color: var(--medium-green); margin-bottom: 0.5rem;">Exklusive Updates</h5>
-                        <p>Sei der Erste, der von neuen Features, Events und Updates erfährt!</p>
-                    </div>
-
-                    <div>
-                        <h5 style="color: var(--medium-green); margin-bottom: 0.5rem;">Community-Events</h5>
-                        <p>Nimm an regelmäßigen Community-Events teil und gewinne tolle Preise!</p>
-                    </div>
-
-                    <div>
-                        <h5 style="color: var(--medium-green); margin-bottom: 0.5rem;">Behind-the-Scenes</h5>
-                        <p>Erhalte Einblicke in die Entwicklung und das Team hinter dem Netzwerk!</p>
-                    </div>
-
-                    <div>
-                        <h5 style="color: var(--medium-green); margin-bottom: 0.5rem;">Direkte Kommunikation</h5>
-                        <p>Teile deine Ideen und Feedback direkt mit den Entwicklern!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <div class="footer-links">
-        <li><a href="index.html">Main</a></li>
-    </div>
-    <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
-</footer>
+        const randomWitz = witze[Math.floor(Math.random() * witze.length)];
+        document.getElementById('witz').innerText = randomWitz;
+    }
+</script>
 </body>
 </html>
