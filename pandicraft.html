@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PandiCraft - Minecraft Server</title>
+    <style>
+        :root {
+            --blue-accent: #0066cc;
+            --blue-light: #4c9aff;
+            --blue-dark: #003d7a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #000;
+            border-bottom: 3px solid var(--blue-accent);
+            box-shadow: 0 0 15px rgba(76, 154, 255, 0.5);
+            padding: 20px 0;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--blue-light);
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--blue-light);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px solid var(--blue-accent);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--blue-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 154, 255, 0.3);
+        }
+
+        .hero {
+            background-image: url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--blue-accent);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--blue-light);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--blue-accent);
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 154, 255, 0.3);
+        }
+
+        .section {
+            background-color: #000;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 10px;
+            border: 1px solid var(--blue-accent);
+            box-shadow: 0 0 20px rgba(76, 154, 255, 0.2);
+        }
+
+        .section h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--blue-light);
+            border-bottom: 2px solid var(--blue-accent);
+            padding-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #111;
+            border: 1px solid var(--blue-accent);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(76, 154, 255, 0.3);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--blue-light);
+        }
+
+        .info-box {
+            background-color: #111;
+            border: 1px solid var(--blue-accent);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h4 {
+            color: var(--blue-light);
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            margin-bottom: 5px;
+        }
+
+        .server-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .server-address {
+            font-size: 1.2rem;
+            background-color: #222;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px dashed var(--blue-accent);
+            font-family: monospace;
+        }
+
+        footer {
+            background-color: #000;
+            border-top: 3px solid var(--blue-accent);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .sponsors {
+            margin: 20px 0;
+        }
+
+        .sponsors h4 {
+            margin-bottom: 15px;
+            color: var(--blue-light);
+        }
+
+        .sponsor-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sponsor {
+            background-color: #111;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--blue-accent);
+        }
+
+        /* Rules styling */
+        .rules-container {
+            background-color: #111;
+            border: 1px solid var(--blue-accent);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .rule-section {
+            margin-bottom: 30px;
+        }
+
+        .rule-section h2 {
+            color: var(--blue-light);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--blue-accent);
+            padding-bottom: 10px;
+        }
+
+        .rule-section h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 15px 0 10px 0;
+            border-bottom: none;
+        }
+
+        .rule-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .rule-section ul li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+        }
+
+        .rule-section ul li::before {
+            content: "•";
+            color: var(--blue-light);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .rule-category {
+            background-color: #000;
+            border-left: 3px solid var(--blue-accent);
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .rule-category h3 {
+            color: var(--blue-light);
+            margin-top: 0;
+        }
+
+        .rule-warning {
+            background-color: rgba(255, 100, 100, 0.1);
+            border-left: 3px solid #ff6464;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .rule-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">
+            <h1><span>Pandi</span>Craft</h1>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">Über uns</a>
+            <a href="#server">Server</a>
+            <a href="#community">Community</a>
+            <a href="#rules">Regeln</a>
+            <a href="#contact">Kontakt</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Willkommen bei PandiCraft!</h2>
+            <p>Tritt unserer Community bei, chatte mit anderen Spielern, teile deine Erlebnisse und genieße die vielen Möglichkeiten!</p>
+            <a href="#server" class="btn">Server beitreten</a>
+            <a href="#community" class="btn">Community entdecken</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h3>Über PandiCraft</h3>
+        <div class="info-box">
+            <p>PandiCraft wurde am <strong>16.03.2025</strong> von <strong>@Diamondman</strong> gegründet.</p>
+            <p>Der Server wird bei Hosting-Club.de (eine Untermarke von DMH) gehostet.</p>
+            <p>Wir danken unserem Sponsor <strong>@JumpStone4477 | Henry</strong> und dem H-C Team!</p>
+        </div>
+    </section>
+
+    <section id="server" class="section">
+        <h3>Minecraft Server</h3>
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h4>Java Edition</h4>
+                    <div class="server-info">
+                        <p>Server Adresse:</p>
+                        <div class="server-address">pandicraft.grueneeule.de</div>
+                        <a href="#" class="btn">Jetzt spielen</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h4>Bedrock Edition</h4>
+                    <div class="server-info">
+                        <p>Server Adresse:</p>
+                        <div class="server-address">dmh-network.de</div>
+                        <p>Port: 25565</p>
+                        <p>Dann eingeben: /h-pandicraft</p>
+                        <a href="#" class="btn">Jetzt spielen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="community" class="section">
+        <h3>Community</h3>
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h4>Discord</h4>
+                    <p>Tritt unserem Discord bei, um mit der Community zu chatten und über alle Server-Neuigkeiten informiert zu bleiben.</p>
+                    <a href="https://discord.gg/wSQA3w8B4R" class="btn">Discord beitreten</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h4>Karte</h4>
+                    <p>Erkunde die Server-Karte und entdecke spannende Orte!</p>
+                    <p><em>Coming soon</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rules" class="section">
+        <h3>PandiCraft Regelwerk</h3>
+
+        <div class="rules-container">
+            <div class="rule-section">
+                <h2>Allgemeine Regeln</h2>
+                <div class="rule-category">
+                    <h3>1. Verhaltenskodex</h3>
+                    <ul>
+                        <li>Sei respektvoll und freundlich gegenüber anderen Nutzern.</li>
+                        <li>Kein Spam oder aufdringliches Verhalten.</li>
+                        <li>Keine beleidigenden, gewaltverherrlichenden, rassistischen oder pornografischen Inhalte.</li>
+                        <li>Private Streitigkeiten sind privat zu klären – nicht in öffentlichen Chats.</li>
+                        <li>Werbung ist nur mit Erlaubnis eines PandiCraft-Teammitglieds gestattet.</li>
+                        <li>Anweisungen des Teams sind zu befolgen.</li>
+                        <li>Schütze deine privaten Daten und teile sie nicht mit anderen.</li>
+                        <li>Falsche Beschwerden können zu Sperren führen; ernsthafte Beschwerden werden geprüft.</li>
+                        <li>Kopieren unserer PandiCraft-Serversysteme auf anderen Plattformen ist untersagt.</li>
+                        <li>Das PandiCraft-Team behält sich das Recht vor, Nutzer ohne Vorwarnung zu sperren.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-section">
+                <h2>Discord-Regeln</h2>
+                <div class="rule-category">
+                    <h3>2. Pings</h3>
+                    <ul>
+                        <li>Direkte Pings an einzelne Nutzer oder Massen-Pings wie <code>@everyone</code> oder <code>@Member</code> sind nicht erlaubt.</li>
+                        <li>Bei Fragen oder Problemen, nutze die dafür vorgesehenen Kanäle und Tickets.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>3. Voice-Chat Regeln</h3>
+                    <ul>
+                        <li>Kein übermäßiges Spammen im Chat während des Voice-Chats.</li>
+                        <li>Keine pornografischen Inhalte über Kamera oder Stream.</li>
+                        <li>Keine extremen Beleidigungen (z. B. Bastard, Hurensohn, ...).</li>
+                        <li>Neue Nutzer freundlich begrüßen.</li>
+                        <li>Übermäßig laute Geräusche oder Musik sind zu vermeiden.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>4. Nicknames</h3>
+                    <ul>
+                        <li>Nicknames dürfen keine beleidigenden, rassistischen oder anstößigen Wörter enthalten.</li>
+                        <li>Nicknames sollten möglichst lesbar sein und keine exzessiven Sonderzeichen enthalten.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-section">
+                <h2>Minecraft-Regeln</h2>
+                <div class="rule-category">
+                    <h3>5. PvP & Verhalten</h3>
+                    <ul>
+                        <li>PvP ist auf PandiCraft nur erlaubt, wenn alle beteiligten Spieler zustimmen.</li>
+                        <li>Das Töten anderer Spieler ohne deren Zustimmung wird als "Random-Kill" betrachtet und ist verboten.</li>
+                        <li>Ausnahme: Auf speziellen PvP-Servern wie Bedwars oder BuildFFA ist PvP immer aktiviert.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>6. Claims</h3>
+                    <ul>
+                        <li>Chunks können mit <code>/xclaim</code> geclaimt werden.</li>
+                        <li>Bitte benennt eure Claims sinnvoll um.</li>
+                        <li>Griefing (das Zerstören fremder Bauten) ist auf PandiCraft strengstens untersagt.</li>
+                        <li>Claims anderer Spieler dürfen nicht ohne Erlaubnis betreten werden.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>7. Erlaubte & Verbotene Client-Mods</h3>
+                    <h4>Verbotene Mods:</h4>
+                    <ul>
+                        <li>AutoTotem</li>
+                        <li>Schematica-Mods (z. B. Litematica)</li>
+                        <li>Freecam (wenn sie durch Blöcke fliegen kann)</li>
+                        <li>Jegliche Mods, die Daten vom PandiCraft-Server auslesen (z. B. ClientSort)</li>
+                        <li>Cheats oder Mods mit unfairen Vorteilen</li>
+                        <li>X-Ray Texture Packs oder Mods</li>
+                    </ul>
+                    <h4>Erlaubte Mods:</h4>
+                    <ul>
+                        <li>Optifine / Sodium / Iris</li>
+                        <li>Minimap-Mods (ohne Spielererkennung oder Cave-Finding)</li>
+                        <li>Kosmetische Mods (wie Capes, Animationen, etc.)</li>
+                        <li>Inventory Sorting Mods (die keine Server-Daten auslesen)</li>
+                    </ul>
+                    <p>Im Zweifel, ob eine Mod erlaubt ist, frage bitte ein PandiCraft-Teammitglied!</p>
+                </div>
+
+                <div class="rule-category">
+                    <h3>8. AFK-Regelung</h3>
+                    <ul>
+                        <li>AFK-Farmen ist auf PandiCraft verboten.</li>
+                        <li>Nach 5 Minuten wird der Status auf „AFK" gesetzt.</li>
+                        <li>Nach weiteren 5 Minuten erfolgt ein automatischer Kick.</li>
+                        <li>Nur Spieler mit dem <code>[CAM-AFK]</code> Rang dürfen im Spectator-Modus AFK sein.</li>
+                        <li>Die Verwendung von Auto-Clickern oder ähnlichen Programmen, um AFK-Erkennung zu umgehen, ist verboten.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>9. Bug-Meldungen</h3>
+                    <ul>
+                        <li>Das Ausnutzen von Bugs führt zu einer Sperre.</li>
+                        <li>Bugs müssen sofort einem PandiCraft-Teammitglied gemeldet werden.</li>
+                        <li>Nutzer, die Bugs melden, werden nicht bestraft.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>10. Server-Sicherheit</h3>
+                    <ul>
+                        <li>Das absichtliche Überlasten des PandiCraft-Servers, z. B. durch DDoS oder massenhafte Pings, ist ausdrücklich verboten.</li>
+                        <li>Versuche, Server-Schwachstellen auszunutzen, führen zu einer permanenten Sperre.</li>
+                    </ul>
+                </div>
+
+                <div class="rule-category">
+                    <h3>11. Strafen</h3>
+                    <ul>
+                        <li>Verstöße gegen die PandiCraft-Regeln können mit temporären oder permanenten Banns bestraft werden.</li>
+                        <li>Teammitglieder entscheiden über die angemessene Strafe.</li>
+                        <li>Bei leichten Verstößen gibt es zunächst eine Verwarnung.</li>
+                        <li>Wiederholte Verstöße führen zu härteren Konsequenzen.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-warning">
+                <h3>Änderungen am Regelwerk</h3>
+                <p>Das Regelwerk kann jederzeit durch das PandiCraft-Team angepasst werden. Nutzer sind verpflichtet, sich über Änderungen zu informieren.</p>
+                <p><strong>Wichtig:</strong> Für Fragen oder Unklarheiten stehen unsere PandiCraft-Teammitglieder zur Verfügung.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h3>Kontakt & Informationen</h3>
+        <div class="info-box">
+            <h4>Regeln</h4>
+            <p>Unsere Server-Regeln findest du auch im Discord unter: <strong>⁠〖📜〗pandi-infos</strong></p>
+        </div>
+    </section>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-links">
+            <a href="index.html">DMH</a>
+        </div>
+        <p class="copyright">© 2025 PandiCraft - Alle Rechte vorbehalten.</p>
+    </div>
+</footer>
+</body>
+</html>
