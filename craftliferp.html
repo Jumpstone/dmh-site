@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CraftLifeRP - Das ultimative Minecraft Roleplay Erlebnis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary: #ff3a3a;
+            --primary-glow: #ff000066;
+            --dark: #1a1a1a;
+            --darker: #0f0f0f;
+            --light: #f5f5f5;
+            --accent: #ff6b6b;
+            --owner: #ff2626;
+            --admin: #ff0000;
+            --developer: #3A8FEF;
+            --moderator: #00ff0c;
+            --supporter: #fffb00;
+            --helper: #d100ff;
+            --buerger: #a2a2a2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--primary-glow);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1920/1080") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--darker) 90%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255, 58, 58, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 58, 58, 0.6);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .features {
+            background-color: var(--dark);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: rgba(26, 26, 26, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 58, 58, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background-color: var(--primary);
+            transition: height 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 58, 58, 0.2);
+            border-color: rgba(255, 58, 58, 0.3);
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .rules {
+            position: relative;
+        }
+
+        .rules-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .rules-list {
+            list-style: none;
+        }
+
+        .rules-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .rules-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        .join-server {
+            text-align: center;
+            background-color: var(--dark);
+            position: relative;
+        }
+
+        .join-server::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .server-info {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 3rem;
+        }
+
+        .server-address {
+            background-color: rgba(26, 26, 26, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 58, 58, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .server-address::before {
+            content: 'SERVER IP';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--dark);
+            padding: 0 10px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        .server-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            background-color: var(--darker);
+            text-align: center;
+            border-top: 1px solid var(--primary-glow);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 58, 58, 0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: rgba(245, 245, 245, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Rank specific styles */
+        .rank-owner {
+            --rank-color: var(--owner);
+            --rank-color-rgb: 255, 38, 38;
+            border-left: 4px solid var(--owner);
+        }
+
+        .rank-admin {
+            --rank-color: var(--admin);
+            --rank-color-rgb: 255, 0, 0;
+            border-left: 4px solid var(--admin);
+        }
+
+        .rank-developer {
+            --rank-color: var(--developer);
+            --rank-color-rgb: 58, 143, 239;
+            border-left: 4px solid var(--developer);
+        }
+
+        .rank-moderator {
+            --rank-color: var(--moderator);
+            --rank-color-rgb: 0, 255, 12;
+            border-left: 4px solid var(--moderator);
+        }
+
+        .rank-supporter {
+            --rank-color: var(--supporter);
+            --rank-color-rgb: 255, 251, 0;
+            border-left: 4px solid var(--supporter);
+        }
+
+        .rank-helper {
+            --rank-color: var(--helper);
+            --rank-color-rgb: 209, 0, 255;
+            border-left: 4px solid var(--helper);
+        }
+
+        .rank-buerger {
+            --rank-color: var(--buerger);
+            --rank-color-rgb: 162, 162, 162;
+            border-left: 4px solid var(--buerger);
+        }
+
+        .ranks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .rank-card {
+            background-color: var(--dark);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rank-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center left, var(--rank-color) 0%, transparent 70%);
+            opacity: 0.3;
+        }
+
+        .rank-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--rank-color);
+            margin-right: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--light);
+            position: relative;
+            box-shadow: 0 0 15px var(--rank-color);
+            font-weight: bold;
+        }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .rank-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rank-color);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(var(--rank-color-rgb), 0.5);
+        }
+
+        .rank-level {
+            font-size: 1rem;
+            color: rgba(245, 245, 245, 0.7);
+        }
+
+        .rank-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .rank-description {
+            margin-bottom: 1.5rem;
+        }
+
+        .rank-privileges {
+            list-style: none;
+        }
+
+        .rank-privileges li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.7rem;
+        }
+
+        .rank-privileges li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--rank-color);
+            border-radius: 50%;
+        }
+
+        .rank-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rank-color), transparent);
+            margin: 1rem 0;
+            opacity: 0.5;
+        }
+
+        /* Adjust text color for better readability on bright backgrounds */
+        .rank-moderator .rank-icon,
+        .rank-supporter .rank-icon {
+            color: var(--dark);
+        }
+
+        /* Animations */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 10px var(--rank-color);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--rank-color);
+            }
+            100% {
+                box-shadow: 0 0 10px var(--rank-color);
+            }
+        }
+
+        .rank-icon {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .rank-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rank-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Animation classes */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content, .rules-content {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="#" class="logo">Craft<span>LifeRP</span></a>
+    <nav>
+        <ul>
+            <li><a href="#about">Über uns</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#rules">Regeln</a></li>
+            <li><a href="#ranks">Ränge</a></li>
+            <li><a href="#join">Beitreten</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="fade-up">Craft<span>LifeRP</span></h1>
+        <p class="fade-up">Erlebe das ultimative Roleplay-Erlebnis in Minecraft</p>
+        <a href="#join" class="btn fade-up">Jetzt beitreten</a>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h2 class="section-title">Über uns</h2>
+    <div class="about-content">
+        <div class="about-image">
+            <img src="/api/placeholder/500/400" alt="CraftLifeRP Server" />
+        </div>
+        <div class="about-text">
+            <h3>Willkommen bei CraftLifeRP</h3>
+            <p>CraftLifeRP ist eine einzigartige Minecraft Roleplay-Gemeinschaft, die ein realistisches Leben in einer virtuellen Welt ermöglicht. Unser Server bietet ein immersives Erlebnis mit einem ausgeklügelten Wirtschaftssystem, spannenden Berufen und einer lebendigen Community.</p>
+            <p>Was uns von anderen Servern unterscheidet, ist unser Fokus auf ein authentisches Roleplay-Erlebnis. Bei uns steht die Geschichte und die Charakterentwicklung im Vordergrund. Jeder Spieler trägt seinen Teil zur gemeinsamen Welt bei.</p>
+            <a href="#features" class="btn">Unsere Features</a>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="features">
+    <h2 class="section-title">Features & Gameplay</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Berufe & Fraktionen</h3>
+            <p>Wähle aus einer Vielzahl von Berufen und Fraktionen. Werde Polizist und sorge für Recht und Ordnung, rette Leben als Sanitäter oder baue dein eigenes Unternehmen auf.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Wirtschaftssystem</h3>
+            <p>Unser dynamisches Wirtschaftssystem ermöglicht dir, Geld zu verdienen, zu investieren und zu handeln. Jede Entscheidung beeinflusst die Wirtschaft des Servers.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Fahrzeuge & Immobilien</h3>
+            <p>Kaufe und personalisiere Fahrzeuge, erwerbe Immobilien und gestalte dein virtuelles Zuhause nach deinen Wünschen.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Roleplay-Elemente</h3>
+            <p>Mit unseren spezialisierten Plugins erleben Spieler ein realistisches RP-Erlebnis mit Handy-System, Ausweisen, Lizenzen und vielem mehr.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Events & Community</h3>
+            <p>Regelmäßige Events und eine aktive Community sorgen dafür, dass du immer neue Abenteuer erleben kannst.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Anpassbare Charaktere</h3>
+            <p>Erstelle deinen eigenen, einzigartigen Charakter mit individueller Hintergrundgeschichte und Persönlichkeit.</p>
+        </div>
+    </div>
+</section>
+
+<section id="rules" class="rules">
+    <h2 class="section-title">Regeln & Roleplay-Infos</h2>
+    <div class="rules-content">
+        <div>
+            <h3>Grundlegende Regeln</h3>
+            <ul class="rules-list">
+                <li><strong>Kein Fail-RP:</strong> Bleibe immer in deiner Rolle und handle, wie es dein Charakter tun würde.</li>
+                <li><strong>Kein Powergaming:</strong> Zwinge anderen Spielern keine Aktionen auf, die sie nicht kontrollieren können.</li>
+                <li><strong>Kein Metagaming:</strong> Nutze keine Informationen, die dein Charakter nicht wissen kann.</li>
+                <li><strong>RDM & VDM verboten:</strong> Grundloses Töten oder Überfahren anderer Spieler ist nicht erlaubt.</li>
+                <li><strong>Respektvoller Umgang:</strong> Behandle alle Spieler mit Respekt, unabhängig von der Roleplay-Situation.</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Whitelist-Verfahren</h3>
+            <p>Um die Qualität des Roleplay-Erlebnisses zu gewährleisten, führen wir ein Whitelist-Verfahren durch:</p>
+            <ul class="rules-list">
+                <li>Tritt unserem Discord-Server bei</li>
+                <li>Fülle das Whitelist-Formular mit deiner Charakter-Beschreibung aus</li>
+                <li>Warte auf ein kurzes Gespräch mit unserem Team</li>
+                <li>Nach erfolgreicher Bewerbung erhältst du Zugang zum Server</li>
+            </ul>
+            <p>Das Whitelist-Verfahren stellt sicher, dass alle Spieler die Grundlagen des Roleplay verstehen und zu unserer Community passen.</p>
+        </div>
+    </div>
+</section>
+
+<section id="ranks" class="ranks">
+    <h2 class="section-title">Rangliste</h2>
+    <div class="ranks-container">
+        <!-- Owner Rank -->
+        <div class="rank-card rank-owner">
+            <div class="rank-header">
+                <div class="rank-icon">O</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Owner</h2>
+                    <div class="rank-level">Rang Stufe 7 • Höchster Rang</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Die Besitzer und Gründer des CraftLifeRP Servers mit vollständiger Kontrolle über alle Aspekte des Servers.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Vollständige Kontrolle über den Server und alle Systeme</li>
+                    <li>Ernennung der Administratoren und des Staffs</li>
+                    <li>Exklusiver Zugang zu allen Server-Ressourcen</li>
+                    <li>Entscheidungshoheit bei allen strategischen Planungen</li>
+                    <li>Zugriff auf alle Servereinstellungen und Datenbanken</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Admin Rank -->
+        <div class="rank-card rank-admin">
+            <div class="rank-header">
+                <div class="rank-icon">A</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Administrator</h2>
+                    <div class="rank-level">Rang Stufe 6</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Die rechte Hand der Owner, verantwortlich für das tägliche Management und die Überwachung des Servers.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Umfangreiche Verwaltungsrechte für nahezu alle Serverbereiche</li>
+                    <li>Berechtigung zur Ernennung von Moderatoren und Support-Teams</li>
+                    <li>Zugriff auf erweiterte Befehle und Tools für Serversteuerung</li>
+                    <li>Mitwirkung bei wichtigen Server-Entscheidungen</li>
+                    <li>Verantwortlich für die Einhaltung der Serverrichtlinien</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Developer Rank -->
+        <div class="rank-card rank-developer">
+            <div class="rank-header">
+                <div class="rank-icon">D</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Developer</h2>
+                    <div class="rank-level">Rang Stufe 5</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Zuständig für die technische Entwicklung und Implementierung von Features und Systemen auf dem Server.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Zugriff auf den Server-Code und die Entwicklungsumgebung</li>
+                    <li>Implementierung neuer Features und Systeme</li>
+                    <li>Behebung von technischen Problemen und Bugs</li>
+                    <li>Weiterentwicklung des Roleplay-Erlebnisses durch neue Mechaniken</li>
+                    <li>Zugriff auf Testserver zum Experimentieren mit neuen Funktionen</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Moderator Rank -->
+        <div class="rank-card rank-moderator">
+            <div class="rank-header">
+                <div class="rank-icon">M</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Moderator</h2>
+                    <div class="rank-level">Rang Stufe 4</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Wächter des Servers, die für die Einhaltung der Regeln und ein harmonisches Spielerlebnis sorgen.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Durchsetzung der Serverregeln im Spiel und auf Discord</li>
+                    <li>Moderation von Chats und Spielerinteraktionen</li>
+                    <li>Befugnis zum Verwarnen, Kicken und temporären Bannen von Spielern</li>
+                    <li>Unterstützung bei Konflikten zwischen Spielern</li>
+                    <li>Überwachung des Roleplay-Verhaltens und Verhindern von FailRP</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Supporter Rank -->
+        <div class="rank-card rank-supporter">
+            <div class="rank-header">
+                <div class="rank-icon">S</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Supporter</h2>
+                    <div class="rank-level">Rang Stufe 3</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Bieten aktive Unterstützung für Spieler bei technischen und spielbezogenen Problemen.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Zugriff auf Support-Tickets und Anfragen</li>
+                    <li>Berechtigung zur Lösung häufiger Spielerprobleme</li>
+                    <li>Bearbeitung von Whitelist-Bewerbungen</li>
+                    <li>Begrenzte Moderationsbefugnisse in Notfällen</li>
+                    <li>Durchführung von Spieler-Einführungen für Neulinge</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Helper Rank -->
+        <div class="rank-card rank-helper">
+            <div class="rank-header">
+                <div class="rank-icon">H</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Helper</h2>
+                    <div class="rank-level">Rang Stufe 2</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Die erste Anlaufstelle für neue Spieler, helfen bei einfachen Fragen und dem Einstieg ins Roleplay.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Grundlegende Unterstützung für neue Spieler</li>
+                    <li>Beantwortung von häufig gestellten Fragen</li>
+                    <li>Meldung von Regelverstößen an höhere Teammitglieder</li>
+                    <li>Durchführung einfacher Server-Führungen für Neulinge</li>
+                    <li>Unterstützung bei Events und Community-Aktivitäten</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bürger Rank -->
+        <div class="rank-card rank-buerger">
+            <div class="rank-header">
+                <div class="rank-icon">B</div>
+                <div class="rank-info">
+                    <h2 class="rank-name">Bürger</h2>
+                    <div class="rank-level">Rang Stufe 1 • Standardrang</div>
+                </div>
+            </div>
+            <div class="rank-content">
+                <p class="rank-description">
+                    Reguläre Spieler, die das Herz der CraftLifeRP-Community bilden. Als Bürger formst du die virtuelle Welt durch dein Roleplay.
+                </p>
+                <div class="rank-divider"></div>
+                <ul class="rank-privileges">
+                    <li>Zugang zum CraftLifeRP Server nach erfolgreicher Whitelist</li>
+                    <li>Teilnahme an allen öffentlichen Events und Aktivitäten</li>
+                    <li>Möglichkeit, einen Beruf auszuüben und ein Unternehmen zu gründen</li>
+                    <li>Interaktion mit allen Spielsystemen nach entsprechendem Fortschritt</li>
+                    <li>Chance auf Beförderung zum Helper bei aktivem Engagement</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="join" class="join-server">
+    <h2 class="section-title">Server beitreten</h2>
+    <div class="server-info">
+        <p>Bereit für dein neues virtuelles Leben? Verbinde dich jetzt mit CraftLifeRP und werde Teil unserer wachsenden Community!</p>
+        <div class="server-address">mc.dmh-network.de | dann /join-craftliferp</div>
+        <p>Für den vollen Spielgenuss benötigst du unsere Modpacks. Alle Informationen zur Installation findest du in unserem Discord.</p>
+    </div>
+    <div class="server-buttons">
+        <a href="#" class="btn">Discord beitreten</a>
+        <a href="#" class="btn btn-secondary">Launcher herunterladen</a>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2 class="section-title">Kontakt & Support</h2>
+    <div class="server-info">
+        <p>Hast du Fragen oder benötigst du Hilfe? Unser Team steht dir gerne zur Verfügung.</p>
+        <p>Die schnellste Möglichkeit, uns zu erreichen, ist über unseren Discord-Server. Dort findest du auch alle wichtigen Informationen und kannst dich mit anderen Spielern austauschen.</p>
+        <div class="server-buttons">
+            <a href="#" class="btn">Discord beitreten</a>
+            <a href="#" class="btn btn-secondary">FAQ anzeigen</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-links">
+            <a href="index.html">DMH</a>
+        </div>
+        <p class="copyright">© 2025 CraftLifeRP - Alle Rechte vorbehalten.</p>
+    </div>
+</footer>
+
+<script>
+    // Simple scroll animation
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .section-title, .about-content > div').forEach(element => {
+            element.style.opacity = '0';
+            observer.observe(element);
+        });
+    });
+</script>
+</body>
+</html>
