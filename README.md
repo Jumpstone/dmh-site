@@ -16,7 +16,7 @@ A modern, responsive website for the DMH-Network Minecraft server network.
 - [index.html](index.html) - Main landing page with server information
 - [rangs.html](rangs.html) - Complete rank system overview
 - [link.html](link.html) - Social media links and community content
-- [regelwerk.html](regelwerk.html) - Social media links and community content
+- [regelwerk.html](regelwerk.html) - The rules
 
 ## Technologies Used
 
