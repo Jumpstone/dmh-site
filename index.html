@@ -452,6 +452,247 @@
             animation-delay: 0.4s;
         }
 
+        /* Cookie Popup Stile */
+        .cookie-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cookie-popup.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .cookie-popup h3 {
+            color: var(--dark-green);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .cookie-popup p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .cookie-btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-btn.accept {
+            background-color: var(--medium-green);
+            color: white;
+            border: none;
+        }
+
+        .cookie-btn.accept:hover {
+            background-color: var(--dark-green);
+        }
+
+        .cookie-btn.settings {
+            background-color: transparent;
+            color: var(--medium-green);
+            border: 1px solid var(--medium-green);
+        }
+
+        .cookie-btn.settings:hover {
+            background-color: rgba(46, 139, 87, 0.1);
+        }
+
+        .cookie-btn.reject {
+            background-color: transparent;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+
+        .cookie-btn.reject:hover {
+            background-color: rgba(255, 68, 68, 0.1);
+        }
+
+        /* Cookie Einstellungen Modal */
+        .cookie-settings {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cookie-settings.show {
+            display: block;
+        }
+
+        .cookie-settings h3 {
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .cookie-settings p {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .cookie-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .cookie-toggle:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-label {
+            flex: 1;
+        }
+
+        .toggle-label h4 {
+            color: var(--dark-green);
+            margin-bottom: 5px;
+        }
+
+        .toggle-label p {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--medium-green);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .cookie-settings-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .save-settings {
+            background-color: var(--medium-green);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .save-settings:hover {
+            background-color: var(--dark-green);
+        }
+
+        .back-to-popup {
+            background-color: transparent;
+            color: var(--medium-green);
+            border: 1px solid var(--medium-green);
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-popup:hover {
+            background-color: rgba(46, 139, 87, 0.1);
+        }
+
+        /* Overlay für Modals */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
         /* Media Queries */
         @media (max-width: 768px) {
             .info-grid, .server-cards {
@@ -470,6 +711,15 @@
             .nav-links {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+
+            .cookie-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cookie-btn {
+                width: 100%;
             }
         }
     </style>
@@ -690,6 +940,75 @@
     <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
 </footer>
 
+<!-- Cookie Popup -->
+<div class="cookie-popup" id="cookiePopup">
+    <h3>Wir verwenden Cookies</h3>
+    <p>Um Ihnen das beste Erlebnis auf unserer Website zu bieten, verwenden wir Cookies. Diese helfen uns, die Website zu verbessern und personalisierte Inhalte anzuzeigen. Durch Klicken auf "Akzeptieren" stimmen Sie der Verwendung aller Cookies zu. Weitere Informationen finden Sie in unserer <a href="#" style="color: var(--medium-green);">Datenschutzerklärung</a>.</p>
+    <div class="cookie-buttons">
+        <button class="cookie-btn reject" id="rejectCookies">Ablehnen</button>
+        <button class="cookie-btn settings" id="cookieSettings">Einstellungen</button>
+        <button class="cookie-btn accept" id="acceptCookies">Akzeptieren</button>
+    </div>
+</div>
+
+<!-- Cookie Einstellungen Modal -->
+<div class="cookie-settings" id="cookieSettingsModal">
+    <h3>Cookie-Einstellungen</h3>
+    <p>Wählen Sie aus, welche Arten von Cookies Sie zulassen möchten. Notwendige Cookies sind für die grundlegende Funktionalität der Website erforderlich und können nicht deaktiviert werden.</p>
+
+    <div class="cookie-toggle">
+        <div class="toggle-label">
+            <h4>Notwendige Cookies</h4>
+            <p>Erforderlich für die grundlegende Funktionalität der Website. Können nicht deaktiviert werden.</p>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" checked disabled>
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div class="cookie-toggle">
+        <div class="toggle-label">
+            <h4>Präferenz-Cookies</h4>
+            <p>Ermöglichen es der Website, sich an von Ihnen getroffene Auswahl zu erinnern (z.B. Sprache oder Region).</p>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="preferenceCookies" checked>
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div class="cookie-toggle">
+        <div class="toggle-label">
+            <h4>Statistik-Cookies</h4>
+            <p>Helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem Informationen anonym gesammelt werden.</p>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="statisticCookies" checked>
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div class="cookie-toggle">
+        <div class="toggle-label">
+            <h4>Marketing-Cookies</h4>
+            <p>Werden verwendet, um Besuchern relevante Werbung und Marketingkampagnen anzuzeigen. Diese Cookies verfolgen Besucher über Websites hinweg.</p>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="marketingCookies">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div class="cookie-settings-buttons">
+        <button class="back-to-popup" id="backToPopup">Zurück</button>
+        <button class="save-settings" id="saveCookieSettings">Einstellungen speichern</button>
+    </div>
+</div>
+
+<!-- Overlay für Modals -->
+<div class="overlay" id="overlay"></div>
+
 <script>
     // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
@@ -717,6 +1036,74 @@
         navigator.clipboard.writeText("play.dmh-network.de");
         alert("Server-Adresse in die Zwischenablage kopiert!");
     }
+
+    // Cookie Popup Funktionen
+    document.addEventListener('DOMContentLoaded', function() {
+        const cookiePopup = document.getElementById('cookiePopup');
+        const cookieSettingsModal = document.getElementById('cookieSettingsModal');
+        const overlay = document.getElementById('overlay');
+        const acceptCookiesBtn = document.getElementById('acceptCookies');
+        const rejectCookiesBtn = document.getElementById('rejectCookies');
+        const cookieSettingsBtn = document.getElementById('cookieSettings');
+        const backToPopupBtn = document.getElementById('backToPopup');
+        const saveCookieSettingsBtn = document.getElementById('saveCookieSettings');
+
+        // Überprüfen, ob Cookie-Zustimmung bereits gegeben wurde
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookiePopup.classList.add('show');
+                overlay.classList.add('show');
+            }, 1000);
+        }
+
+        // Cookie akzeptieren
+        acceptCookiesBtn.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            localStorage.setItem('preferenceCookies', 'true');
+            localStorage.setItem('statisticCookies', 'true');
+            localStorage.setItem('marketingCookies', 'true');
+            cookiePopup.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        // Cookie ablehnen
+        rejectCookiesBtn.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'false');
+            localStorage.setItem('preferenceCookies', 'false');
+            localStorage.setItem('statisticCookies', 'false');
+            localStorage.setItem('marketingCookies', 'false');
+            cookiePopup.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        // Cookie Einstellungen öffnen
+        cookieSettingsBtn.addEventListener('click', function() {
+            cookiePopup.classList.remove('show');
+            cookieSettingsModal.classList.add('show');
+
+            // Aktuelle Einstellungen laden
+            document.getElementById('preferenceCookies').checked = localStorage.getItem('preferenceCookies') !== 'false';
+            document.getElementById('statisticCookies').checked = localStorage.getItem('statisticCookies') !== 'false';
+            document.getElementById('marketingCookies').checked = localStorage.getItem('marketingCookies') === 'true';
+        });
+
+        // Zurück zum Cookie Popup
+        backToPopupBtn.addEventListener('click', function() {
+            cookieSettingsModal.classList.remove('show');
+            cookiePopup.classList.add('show');
+        });
+
+        // Cookie Einstellungen speichern
+        saveCookieSettingsBtn.addEventListener('click', function() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            localStorage.setItem('preferenceCookies', document.getElementById('preferenceCookies').checked);
+            localStorage.setItem('statisticCookies', document.getElementById('statisticCookies').checked);
+            localStorage.setItem('marketingCookies', document.getElementById('marketingCookies').checked);
+
+            cookieSettingsModal.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    });
 </script>
 </body>
 </html>
