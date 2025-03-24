@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DMH-Network.de - Links & Socials</title>
     <style>
+        /* Grundlegende Variablen für Light Mode */
         :root {
             --dark-green: #1a5e1a;
             --medium-green: #2e8b57;
@@ -13,21 +14,37 @@
             --accent-gold: #ffd700;
             --text-color: #333;
             --white: #ffffff;
-            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
-            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            --animation-speed: 0.3s;
+            --background-color: #f8f9fa;
+            --card-background: rgba(255, 255, 255, 0.9);
+            --footer-background: rgba(26, 94, 26, 0.8);
+            --header-background: rgba(26, 94, 26, 0.8);
+            --nav-background: rgba(26, 94, 26, 0.9);
+            --server-card-background: rgba(255, 255, 255, 0.85);
+            --tech-specs-background: rgba(0, 0, 0, 0.05);
         }
-        
+
+        /* Dark Mode Variablen */
+        [data-theme="dark"] {
+            --text-color: #e0e0e0;
+            --background-color: #121212;
+            --card-background: rgba(33, 33, 33, 0.9);
+            --footer-background: rgba(18, 18, 18, 0.8);
+            --header-background: rgba(18, 18, 18, 0.8);
+            --nav-background: rgba(18, 18, 18, 0.9);
+            --server-card-background: rgba(33, 33, 33, 0.85);
+            --tech-specs-background: rgba(255, 255, 255, 0.05);
+            --very-light-green: rgba(33, 33, 33, 0.9);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f8f9fa;
+            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             background-image: url('/api/placeholder/1200/800');
@@ -36,8 +53,9 @@
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
-        
+
         body::before {
             content: '';
             position: absolute;
@@ -48,9 +66,9 @@
             background-color: rgba(0, 0, 0, 0.6);
             z-index: -1;
         }
-        
+
         header {
-            background: rgba(26, 94, 26, 0.8);
+            background: var(--header-background);
             color: var(--white);
             padding: 2.5rem 0;
             text-align: center;
@@ -61,7 +79,7 @@
             -webkit-backdrop-filter: blur(5px);
             border-bottom: 3px solid var(--accent-gold);
         }
-        
+
         header h1 {
             font-size: 3.5rem;
             font-weight: 800;
@@ -70,35 +88,35 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             color: var(--white);
         }
-        
+
         header p {
             font-size: 1.3rem;
             font-weight: 300;
             opacity: 0.9;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 3rem auto;
             padding: 0 2rem;
         }
-        
+
         nav {
-            background: rgba(26, 94, 26, 0.9);
+            background: var(--nav-background);
             padding: 1rem 0;
             text-align: center;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
-        
+
         .nav-links {
             display: flex;
             justify-content: center;
             list-style: none;
             gap: 2rem;
         }
-        
+
         .nav-links a {
             color: var(--white);
             text-decoration: none;
@@ -108,11 +126,57 @@
             border-radius: 4px;
             transition: all 0.3s ease;
         }
-        
+
         .nav-links a:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-        
+
+        /* Dark Mode Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--medium-green);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
         h2 {
             color: var(--white);
             font-size: 2.2rem;
@@ -121,7 +185,7 @@
             display: inline-block;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        
+
         h2::after {
             content: '';
             position: absolute;
@@ -132,28 +196,28 @@
             background: var(--accent-gold);
             border-radius: 2px;
         }
-        
+
         .main-content {
             display: flex;
             flex-direction: column;
             gap: 3rem;
         }
-        
+
         .section {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: var(--card-background);
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: var(--card-shadow);
-            transition: transform var(--animation-speed);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .section:hover {
             transform: translateY(-5px);
         }
-        
+
         .section h3 {
             color: var(--dark-green);
             font-size: 1.8rem;
@@ -161,17 +225,17 @@
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--light-green);
         }
-        
+
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
+
         .links-category {
             margin-bottom: 2.5rem;
         }
-        
+
         .links-category h4 {
             font-size: 1.4rem;
             color: var(--dark-green);
@@ -179,13 +243,13 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid var(--light-green);
         }
-        
+
         .social-links {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-        
+
         .social-link {
             display: flex;
             align-items: center;
@@ -198,13 +262,13 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .social-link:hover {
             transform: translateY(-5px);
             box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
             background-color: var(--light-green);
         }
-        
+
         .social-icon {
             font-size: 1.8rem;
             margin-right: 1rem;
@@ -218,20 +282,20 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-        
+
         .link-divider {
             height: 2px;
             background: var(--light-green);
             margin: 1.5rem 0;
             border-radius: 2px;
         }
-        
+
         .creator-link {
             background-color: rgba(26, 94, 26, 0.1);
         }
-        
+
         footer {
-            background: rgba(26, 94, 26, 0.8);
+            background: var(--footer-background);
             color: var(--white);
             text-align: center;
             padding: 2rem 0;
@@ -241,51 +305,51 @@
             -webkit-backdrop-filter: blur(5px);
             border-top: 3px solid var(--accent-gold);
         }
-        
+
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
             margin: 1rem 0;
         }
-        
+
         .footer-links a {
             color: var(--white);
             text-decoration: none;
             opacity: 0.8;
             transition: opacity 0.3s ease;
         }
-        
+
         .footer-links a:hover {
             opacity: 1;
             text-decoration: underline;
         }
-        
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .section {
             animation: fadeIn 0.5s ease forwards;
         }
-        
+
         /* Media Queries */
         @media (max-width: 768px) {
             .links-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             header h1 {
                 font-size: 2.5rem;
             }
-            
+
             .container {
                 padding: 0 1rem;
                 margin: 2rem auto;
             }
-            
+
             .nav-links {
                 flex-direction: column;
                 gap: 0.5rem;
@@ -304,7 +368,12 @@
         <li><a href="index.html">Startseite</a></li>
         <li><a href="rangs.html">Ränge</a></li>
         <li><a href="regelwerk.html">Regelwerk</a></li>
-        <li><a href="link.html">Links</a></li>
+        <li>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </li>
     </ul>
 </nav>
 
@@ -412,5 +481,28 @@
     </div>
     <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
 </footer>
+
+<script>
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Überprüfen, ob der Dark Mode im Local Storage gespeichert ist
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.setAttribute('data-theme', 'dark');
+        darkModeToggle.checked = true;
+    }
+
+    // Event Listener für den Dark Mode Toggle
+    darkModeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            body.removeAttribute('data-theme');
+            localStorage.removeItem('darkMode');
+        }
+    });
+</script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DMH-Network.de - Regelwerk</title>
     <style>
+        /* Grundlegende Variablen für Light Mode */
         :root {
             --dark-green: #1a5e1a;
             --medium-green: #2e8b57;
@@ -13,10 +14,13 @@
             --accent-gold: #ffd700;
             --text-color: #333;
             --white: #ffffff;
-            --gradient-green: linear-gradient(135deg, #2e8b57, #1a5e1a);
-            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            --animation-speed: 0.3s;
+            --background-color: #f8f9fa;
+            --card-background: rgba(255, 255, 255, 0.9);
+            --footer-background: rgba(26, 94, 26, 0.8);
+            --header-background: rgba(26, 94, 26, 0.8);
+            --nav-background: rgba(26, 94, 26, 0.9);
+            --server-card-background: rgba(255, 255, 255, 0.85);
+            --tech-specs-background: rgba(0, 0, 0, 0.05);
 
             /* Server-Farben */
             --survival-color: #F44336; /* Rot statt Grün */
@@ -27,6 +31,19 @@
             --buildffa-color: #40E0D0; /* Türkis */
         }
 
+        /* Dark Mode Variablen */
+        [data-theme="dark"] {
+            --text-color: #e0e0e0;
+            --background-color: #121212;
+            --card-background: rgba(33, 33, 33, 0.9);
+            --footer-background: rgba(18, 18, 18, 0.8);
+            --header-background: rgba(18, 18, 18, 0.8);
+            --nav-background: rgba(18, 18, 18, 0.9);
+            --server-card-background: rgba(33, 33, 33, 0.85);
+            --tech-specs-background: rgba(255, 255, 255, 0.05);
+            --very-light-green: rgba(33, 33, 33, 0.9);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +52,7 @@
         }
 
         body {
-            background-color: #f8f9fa;
+            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             background-image: url('/api/placeholder/1200/800');
@@ -44,6 +61,7 @@
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body::before {
@@ -58,7 +76,7 @@
         }
 
         header {
-            background: rgba(26, 94, 26, 0.8);
+            background: var(--header-background);
             color: var(--white);
             padding: 2.5rem 0;
             text-align: center;
@@ -93,7 +111,7 @@
         }
 
         nav {
-            background: rgba(26, 94, 26, 0.9);
+            background: var(--nav-background);
             padding: 1rem 0;
             text-align: center;
             backdrop-filter: blur(5px);
@@ -119,6 +137,52 @@
 
         .nav-links a:hover {
             background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dark Mode Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--medium-green);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
         }
 
         h2 {
@@ -148,11 +212,11 @@
         }
 
         .section {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: var(--card-background);
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: var(--card-shadow);
-            transition: transform var(--animation-speed);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -224,7 +288,7 @@
         }
 
         footer {
-            background: rgba(26, 94, 26, 0.8);
+            background: var(--footer-background);
             color: var(--white);
             text-align: center;
             padding: 2rem 0;
@@ -305,8 +369,13 @@
     <ul class="nav-links">
         <li><a href="index.html">Startseite</a></li>
         <li><a href="rangs.html">Ränge</a></li>
-        <li><a href="regelwerk.html">Regelwerk</a></li>
         <li><a href="link.html">Links</a></li>
+        <li>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </li>
     </ul>
 </nav>
 
@@ -475,5 +544,28 @@
     </div>
     <p>&copy; 2025 DMH-Network.de - Alle Rechte vorbehalten</p>
 </footer>
+
+<script>
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Überprüfen, ob der Dark Mode im Local Storage gespeichert ist
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.setAttribute('data-theme', 'dark');
+        darkModeToggle.checked = true;
+    }
+
+    // Event Listener für den Dark Mode Toggle
+    darkModeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            body.removeAttribute('data-theme');
+            localStorage.removeItem('darkMode');
+        }
+    });
+</script>
 </body>
 </html>
